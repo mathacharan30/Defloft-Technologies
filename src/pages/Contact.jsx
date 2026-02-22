@@ -21,13 +21,13 @@ function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Store submission in array and localStorage
-    setTimeout(() => {
-      const submission = addSubmission(formData);
+    try {
+      // Store submission in Firebase
+      const submission = await addSubmission(formData);
       console.log('Form submitted and stored:', submission);
       setIsSubmitting(false);
       setSubmitSuccess(true);
@@ -44,7 +44,11 @@ function Contact() {
         });
         setSubmitSuccess(false);
       }, 3000);
-    }, 1000);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setIsSubmitting(false);
+      alert('There was an error submitting the form. Please try again.');
+    }
   };
 
   return (
