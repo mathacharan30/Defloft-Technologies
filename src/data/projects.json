@@ -1,0 +1,13 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "E-Commerce Platform",
+      "category": "Web Development",
+      "description": "A modern, fully responsive e-commerce platform with advanced shopping features, payment integration, and real-time inventory management.",
+      "technologies": ["React", "Node.js", "MongoDB", "Stripe"],
+      "image": "https://via.placeholder.com/600x400/0a1f44/ffffff?text=E-Commerce+Platform",
+      "link": "#"
+    }
+  ]
+}
