@@ -1,12 +1,147 @@
-{
+﻿{
   "projects": [
     {
       "id": 1,
-      "title": "E-Commerce Platform",
+      "title": "NammaDigitals Marketing Website",
       "category": "Web Development",
-      "description": "A modern, fully responsive e-commerce platform with advanced shopping features, payment integration, and real-time inventory management.",
-      "technologies": ["React", "Node.js", "MongoDB", "Stripe"],
-      "image": "https://via.placeholder.com/600x400/0a1f44/ffffff?text=E-Commerce+Platform",
+      "description": "Modern digital marketing agency website with conversion-focused hero sections, service highlights, and performance-driven UI design.",
+      "technologies": ["React", "Tailwind CSS", "Node.js"],
+      "image": "/images/Web 3.png",
+      "link": "#"
+    },
+    {
+      "id": 2,
+      "title": "Jewellery E-Commerce UI",
+      "category": "UI/UX",
+      "description": "Responsive jewellery shopping interface with product previews, recommendations, and optimized product detail layouts.",
+      "technologies": ["React", "MongoDB", "Node.js"],
+      "image": "/images/UX 2.png",
+      "link": "#"
+    },
+    {
+      "id": 3,
+      "title": "Image Media Solutions Website",
+      "category": "Web Development",
+      "description": "Creative media agency website featuring bold visuals, animated UI elements, and responsive multi-device layouts.",
+      "technologies": ["React", "CSS", "Framer Motion"],
+      "image": "/images/UX 3.png",
+      "link": "#"
+    },
+    {
+      "id": 4,
+      "title": "CRM Analytics Dashboard",
+      "category": "Analytics",
+      "description": "Comprehensive analytics dashboard with charts, performance metrics, and appointment tracking for business insights.",
+      "technologies": ["React", "Chart.js", "Node.js"],
+      "image": "/images/Dashboards 3.webp",
+      "link": "#"
+    },
+    {
+      "id": 5,
+      "title": "College Institution Website",
+      "category": "Web Development",
+      "description": "Educational institution portal with structured navigation, academic sections, and responsive information layouts.",
+      "technologies": ["React", "Bootstrap", "Node.js"],
+      "image": "/images/Web 5.png",
+      "link": "#"
+    },
+    {
+      "id": 6,
+      "title": "Customer Support Dashboard",
+      "category": "Analytics",
+      "description": "Customer analytics and reporting dashboard displaying order metrics, engagement charts, and performance tracking.",
+      "technologies": ["React", "JavaScript", "REST APIs"],
+      "image": "/images/Dashboards 2.webp",
+      "link": "#"
+    },
+    {
+      "id": 7,
+      "title": "Developer Student Club Website",
+      "category": "Web Development",
+      "description": "Community-driven developer club website showcasing events, teams, and technology ecosystem visuals.",
+      "technologies": ["React", "Tailwind CSS"],
+      "image": "/images/Web 4.png",
+      "link": "#"
+    },
+    {
+      "id": 8,
+      "title": "ERP System Architecture UI",
+      "category": "ERP",
+      "description": "Enterprise resource planning interface visualizing modules like CRM, HR, Accounting, and Inventory workflows.",
+      "technologies": ["React", "Node.js", "MongoDB"],
+      "image": "/images/ERP 1.jpg",
+      "link": "#"
+    },
+    {
+      "id": 9,
+      "title": "PixelFlare Agency Landing Page",
+      "category": "Web Development",
+      "description": "High-conversion SaaS agency landing page with branding sections, marketing features, and modern UI layout.",
+      "technologies": ["React", "Tailwind CSS", "Framer Motion"],
+      "image": "/images/Web 2.png",
+      "link": "#"
+    },
+    {
+      "id": 10,
+      "title": "Business Performance Dashboard",
+      "category": "Analytics",
+      "description": "Data-driven business dashboard showing revenue growth, user engagement analytics, and project tracking visuals.",
+      "technologies": ["React", "Chart.js", "Node.js"],
+      "image": "/images/Dashboards 1.png",
+      "link": "#"
+    },
+    {
+      "id": 11,
+      "title": "Fluidmech Engineering Website",
+      "category": "Web Development",
+      "description": "Corporate engineering services website with SLA-focused messaging, structured service layouts, and modern enterprise UI.",
+      "technologies": ["React", "Tailwind CSS", "Node.js"],
+      "image": "/images/Web 1.png",
+      "link": "#"
+    },
+    {
+      "id": 12,
+      "title": "SpecX Eyewear E-Commerce Experience",
+      "category": "UI/UX",
+      "description": "Modern eyewear shopping experience featuring product grids, filtering systems, and responsive layouts across devices.",
+      "technologies": ["Figma", "UI Design", "Responsive Design"],
+      "image": "/images/UX 1.png",
+      "link": "#"
+    },
+    {
+      "id": 13,
+      "title": "ERP Manufacturing Inventory Module",
+      "category": "ERP",
+      "description": "Inventory and manufacturing configuration interface with tracking, logistics settings, and operational workflows.",
+      "technologies": ["React", "Node.js", "MongoDB"],
+      "image": "/images/erp-4.jpeg",
+      "link": "#"
+    },
+    {
+      "id": 14,
+      "title": "ERP Production Workflow Dashboard",
+      "category": "ERP",
+      "description": "Manufacturing process dashboard displaying production stages, operator tracking, and workflow management tools.",
+      "technologies": ["React", "REST API", "Node.js"],
+      "image": "/images/erp-3.jpeg",
+      "link": "#"
+    },
+    {
+      "id": 15,
+      "title": "Vertex Enterprise ERP Dashboard",
+      "category": "ERP",
+      "description": "Enterprise ERP admin panel with billing insights, inventory monitoring, low stock alerts, and business analytics.",
+      "technologies": ["React", "Node.js", "MongoDB"],
+      "image": "/images/erp-2.jpeg",
+      "link": "#"
+    },
+    {
+      "id": 16,
+      "title": "Vertex School Management ERP",
+      "category": "ERP",
+      "description": "School management system with student records, attendance tracking, administration panels, and reporting features.",
+      "technologies": ["React", "Node.js", "MongoDB"],
+      "image": "/images/erp-1.jpeg",
       "link": "#"
     }
   ]

@@ -5,7 +5,7 @@ import projectsData from '../data/projects.json';
 function Portfolio() {
   const [activeFilter, setActiveFilter] = useState('All Projects');
 
-  const categories = ['All Projects', 'Web Development', 'UI/UX Design', 'ERP', 'Analytics'];
+  const categories = ['All Projects', 'Web Development', 'UI/UX', 'ERP', 'Analytics'];
 
   const filteredProjects = activeFilter === 'All Projects' 
     ? projectsData.projects 
@@ -90,26 +90,7 @@ function Portfolio() {
                       ))}
                     </div>
 
-                    {/* View Project Link */}
-                    <a
-                      href={project.link}
-                      className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors"
-                    >
-                      View Project
-                      <svg
-                        className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 8l4 4m0 0l-4 4m4-4H3"
-                        />
-                      </svg>
-                    </a>
+
                   </div>
                 </div>
               ))}
