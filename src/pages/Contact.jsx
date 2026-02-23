@@ -31,7 +31,7 @@ function Contact() {
       console.log('Form submitted and stored:', submission);
       setIsSubmitting(false);
       setSubmitSuccess(true);
-      
+
       // Reset form after 3 seconds
       setTimeout(() => {
         setFormData({
@@ -83,8 +83,7 @@ function Contact() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-[#0a1f44] mb-2">Email</h3>
-                  <p className="text-gray-600">info@devloft.tech</p>
-                  <p className="text-gray-600">support@devloft.tech</p>
+                  <p className="text-gray-600">hello@devlofttech.com</p>
                 </div>
               </div>
 
@@ -97,8 +96,7 @@ function Contact() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-[#0a1f44] mb-2">Phone</h3>
-                  <p className="text-gray-600">+91 821 2345 678</p>
-                  <p className="text-gray-600">+91 80 4567 8900</p>
+                  <p className="text-gray-600">+91 8147814232</p>
                 </div>
               </div>
 
@@ -111,17 +109,9 @@ function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#0a1f44] mb-2">Offices</h3>
-                  <div className="mb-3">
-                    <p className="font-semibold text-gray-800">Mysore Office:</p>
-                    <p className="text-gray-600">123 Vijaynagar, Mysore</p>
-                    <p className="text-gray-600">Karnataka 570017, India</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-800">Bangalore Office:</p>
-                    <p className="text-gray-600">456 MG Road, Bangalore</p>
-                    <p className="text-gray-600">Karnataka 560001, India</p>
-                  </div>
+                  <h3 className="text-lg font-bold text-[#0a1f44] mb-2">Office</h3>
+                  <p className="text-gray-600">No.804, 772/A, B' Block, 3rd Stage,</p>
+                  <p className="text-gray-600">Vijayanagar 570017 - Mysore, India</p>
                 </div>
               </div>
 
@@ -130,12 +120,8 @@ function Contact() {
                 <h3 className="text-xl font-bold text-[#0a1f44] mb-4">Office Hours</h3>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Monday - Friday:</span>
+                    <span className="text-gray-600">Monday - Saturday:</span>
                     <span className="font-semibold text-gray-800">9:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Saturday:</span>
-                    <span className="font-semibold text-gray-800">10:00 AM - 4:00 PM</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Sunday:</span>
@@ -148,7 +134,7 @@ function Contact() {
             {/* Contact Form */}
             <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
               <h2 className="text-3xl font-bold text-[#0a1f44] mb-6">Send Us a Message</h2>
-              
+
               {submitSuccess && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                   <p className="text-green-700 font-semibold">✓ Message sent successfully! We'll get back to you soon.</p>
@@ -288,15 +274,20 @@ function Contact() {
       {/* Map Section */}
       <section className="py-20 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gray-200 rounded-2xl overflow-hidden h-96 flex items-center justify-center">
-            <div className="text-center">
-              <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <p className="text-gray-500 text-lg font-medium">Map Location</p>
-              <p className="text-gray-400 text-sm mt-2">Integrate Google Maps or other map service here</p>
-            </div>
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold text-[#0a1f44] mb-2">Find Us</h2>
+            <p className="text-gray-600">Visit our office in Mysuru</p>
+          </div>
+          <div className="rounded-2xl overflow-hidden h-96 shadow-lg">
+            <iframe
+              src="https://maps.google.com/maps?q=12.320136389047713,76.60644375021546&z=18&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Devloft Technologies Office Location"
+            />
           </div>
         </div>
       </section>

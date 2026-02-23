@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import projectsData from '../data/projects.json';
 
 function Portfolio() {
@@ -135,9 +136,9 @@ function Portfolio() {
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
               Ready to start your project? Get in touch with us and let's discuss how we can help you achieve your goals.
             </p>
-            <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold">
+            <Link to="/contact" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold">
               Start Your Project
-            </button>
+            </Link>
           </div>
         </div>
       </section>

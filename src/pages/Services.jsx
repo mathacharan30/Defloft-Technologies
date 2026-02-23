@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 function Services() {
   return (
     <div className="min-h-screen">
@@ -25,9 +27,9 @@ function Services() {
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Create powerful, scalable web applications that drive business growth and deliver exceptional user experiences.
               </p>
-              <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+              <Link to="/contact" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
                 Get Started
-              </button>
+              </Link>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
               <h3 className="text-2xl font-bold text-[#0a1f44] mb-6">What We Offer</h3>
@@ -91,9 +93,9 @@ function Services() {
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Design intuitive, engaging interfaces that combine beautiful aesthetics with seamless functionality.
               </p>
-              <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+              <Link to="/contact" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
                 Get Started
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -113,9 +115,9 @@ function Services() {
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Streamline your business operations with comprehensive ERP solutions tailored to your industry.
               </p>
-              <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+              <Link to="/contact" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
                 Get Started
-              </button>
+              </Link>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
               <h3 className="text-2xl font-bold text-[#0a1f44] mb-6">What We Offer</h3>
@@ -179,9 +181,9 @@ function Services() {
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Transform your data into actionable insights with powerful visualization and analytics tools.
               </p>
-              <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+              <Link to="/contact" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
                 Get Started
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -195,9 +197,9 @@ function Services() {
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
               We create tailored solutions for unique business challenges. Let's discuss your specific requirements.
             </p>
-            <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold">
+            <Link to="/contact" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold">
               Contact Our Team
-            </button>
+            </Link>
           </div>
         </div>
       </section>

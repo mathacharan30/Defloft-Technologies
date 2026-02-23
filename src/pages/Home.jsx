@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 function Home() {
   return (
     <div>
@@ -19,13 +21,13 @@ function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-blue-600 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center gap-2 shadow-lg">
+            <Link to="/contact" className="bg-blue-600 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center gap-2 shadow-lg">
               Get Started 
               <span>→</span>
-            </button>
-            <button className="border-2 border-white/30 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-white/10 transition">
+            </Link>
+            <Link to="/services" className="border-2 border-white/30 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-white/10 transition">
               Our Services
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -240,13 +242,13 @@ function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-blue-600 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center gap-2 justify-center shadow-lg">
+            <Link to="/contact" className="bg-blue-600 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center gap-2 justify-center shadow-lg">
               Start a Project
               <span>→</span>
-            </button>
-            <button className="border-2 border-white/30 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-white/10 transition">
+            </Link>
+            <Link to="/portfolio" className="border-2 border-white/30 text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-white/10 transition">
               View Our Work
-            </button>
+            </Link>
           </div>
         </div>
       </section>

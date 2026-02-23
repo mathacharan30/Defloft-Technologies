@@ -22,9 +22,6 @@ function Header() {
       <nav className="container mx-auto px-4 sm:px-6 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2" onClick={closeMenu}>
-            <div className="w-10 h-10 bg-blue-700 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">D</span>
-            </div>
             <span className="text-lg sm:text-xl font-semibold text-gray-800">
               Devloft <span className="text-blue-600">Technologies</span>
             </span>
@@ -72,9 +69,12 @@ function Header() {
             >
               Contact
             </Link>
-            <button className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition">
+            <Link 
+              to="/contact" 
+              className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition"
+            >
               Get Started
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -147,9 +147,13 @@ function Header() {
             >
               Contact
             </Link>
-            <button className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition mx-4">
+            <Link
+              to="/contact"
+              onClick={closeMenu}
+              className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition mx-4"
+            >
               Get Started
-            </button>
+            </Link>
           </div>
         </div>
       </nav>
