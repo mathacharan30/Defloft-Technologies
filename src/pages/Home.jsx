@@ -6,11 +6,6 @@ function Home() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#0a1f44] via-[#1e3a5f] to-[#0a1f44] text-white py-24 md:py-32">
         <div className="container mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2.5 mb-8">
-            <span className="text-2xl">✨</span>
-            <span className="text-sm font-medium">Transforming Businesses Through Technology</span>
-          </div>
-          
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Building Scalable Digital<br />
             <span className="text-white">& ERP Solutions</span>
@@ -36,9 +31,6 @@ function Home() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              What We Do
-            </span>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Comprehensive technology solutions tailored to your business objectives
@@ -105,9 +97,7 @@ function Home() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              Why Choose Us
-            </span>
+      
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Devloft</h2>
             <p className="text-gray-600 text-lg">
               Partner with a team that understands enterprise technology
@@ -186,9 +176,7 @@ function Home() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              Our Approach
-            </span>
+            
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Process</h2>
             <p className="text-gray-600 text-lg">
               A proven methodology that delivers results
