@@ -1,43 +1,98 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import projectsData from '../data/projects.json';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useRef } from "react";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import projectsData from "../data/projects.json";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
+const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
+
+function Section({ children, className = "" }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <motion.section
+      ref={ref}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      variants={stagger}
+      className={className}
+    >
+      {children}
+    </motion.section>
+  );
+}
 
 function Portfolio() {
-  const [activeFilter, setActiveFilter] = useState('All Projects');
+  const [activeFilter, setActiveFilter] = useState("All Projects");
+  const categories = [
+    "All Projects",
+    "Web Development",
+    "UI/UX",
+    "ERP",
+    "Analytics",
+  ];
 
-  const categories = ['All Projects', 'Web Development', 'UI/UX', 'ERP', 'Analytics'];
-
-  const filteredProjects = activeFilter === 'All Projects' 
-    ? projectsData.projects 
-    : projectsData.projects.filter(project => project.category === activeFilter);
+  const filteredProjects =
+    activeFilter === "All Projects"
+      ? projectsData.projects
+      : projectsData.projects.filter((p) => p.category === activeFilter);
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-[#0a1f44] text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-bold mb-6">Our Portfolio</h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Explore our successful projects across various industries and technologies
-          </p>
+    <div className="overflow-hidden">
+      {/* Hero */}
+      <section className="relative pt-36 pb-24 bg-dark-950">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-sm font-mono uppercase tracking-widest text-electric-blue mb-6"
+          >
+            Our Work
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="font-heading text-4xl sm:text-6xl lg:text-7xl font-light text-white mb-6 leading-tight max-w-3xl"
+          >
+            Our <span className="gradient-text-warm">portfolio</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-gray-400 max-w-xl leading-relaxed"
+          >
+            Explore our successful projects across various industries and
+            technologies.
+          </motion.p>
         </div>
       </section>
 
-      {/* Filter Buttons */}
-      <section className="py-12 bg-gray-50">
+      <section className="py-6 bg-dark-950/80 backdrop-blur-xl sticky top-[72px] z-30 border-b border-white/[0.03]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
+          <div className="flex flex-wrap justify-center gap-2">
+            {categories.map((cat) => (
               <button
-                key={category}
-                onClick={() => setActiveFilter(category)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all ${
-                  activeFilter === category
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                key={cat}
+                onClick={() => setActiveFilter(cat)}
+                className={`px-5 py-2.5 rounded-full text-sm font-heading font-medium transition-all duration-300 ${
+                  activeFilter === cat
+                    ? "bg-gradient-to-bl from-neon-green to-white text-dark-950"
+                    : "bg-white/[0.04] backdrop-blur-md  text-gray-500 hover:text-white hover:border-neon-green/15"
                 }`}
               >
-                {category}
+                {cat}
               </button>
             ))}
           </div>
@@ -45,84 +100,115 @@ function Portfolio() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {filteredProjects.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.map((project) => (
-                <div
-                  key={project.id}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
-                >
-                  {/* Project Image */}
-                  <div className="relative overflow-hidden h-64 bg-gradient-to-br from-blue-600 to-blue-800">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f44] to-transparent opacity-60"></div>
-                  </div>
+      <Section className="py-24 bg-dark-950 relative">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatePresence mode="wait">
+            {filteredProjects.length > 0 ? (
+              <motion.div
+                key={activeFilter}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
+              >
+                {filteredProjects.map((project, i) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05, duration: 0.4 }}
+                  >
+                    <div className="group h-full rounded-lg card-premium overflow-hidden transition-all duration-500">
+                      {/* Image */}
+                      <div className="relative overflow-hidden h-56">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/30 to-transparent" />
+                        <div className="absolute top-4 left-4">
+                          <span className="px-3 py-1 rounded bg-dark-950/60 backdrop-blur-sm border border-white/[0.06] text-neon-green font-mono text-[10px] uppercase tracking-wider">
+                            {project.category}
+                          </span>
+                        </div>
+                      </div>
 
-                  {/* Project Info */}
-                  <div className="p-6">
-                    <div className="mb-3">
-                      <span className="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
-                        {project.category}
-                      </span>
+                      {/* Info */}
+                      <div className="p-6">
+                        <h3 className="font-heading text-lg font-medium text-white mb-2 group-hover:text-neon-green transition-colors duration-300">
+                          {project.title}
+                        </h3>
+                        <p className="text-gray-500 text-sm leading-relaxed mb-4">
+                          {project.description}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {project.technologies.map((tech, j) => (
+                            <span
+                              key={j}
+                              className="px-2.5 py-1 rounded-md bg-dark-950/50 border border-white/[0.06] text-gray-500 text-xs font-mono"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    <h3 className="text-2xl font-bold text-[#0a1f44] mb-3 group-hover:text-blue-600 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
-                    
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech, index) => (
-                        <span
-                          key={index}
-                          className="bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-
-                  </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center py-20"
+              >
+                <div className="w-20 h-20 rounded-lg card-premium flex items-center justify-center mx-auto mb-4">
+                  <ExternalLink size={32} className="text-gray-700" />
                 </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-20">
-              <div className="text-gray-400 mb-4">
-                <svg className="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-gray-700 mb-2">No projects found</h3>
-              <p className="text-gray-500">No projects available in this category yet.</p>
-            </div>
-          )}
+                <h3 className="font-heading text-xl font-medium text-white mb-2">
+                  No projects found
+                </h3>
+                <p className="text-gray-600">
+                  No projects available in this category yet.
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      </section>
+      </Section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[#1e3a5f] rounded-3xl p-12 text-center text-white">
-            <h2 className="text-4xl font-bold mb-4">Let's Build Something Amazing Together</h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Ready to start your project? Get in touch with us and let's discuss how we can help you achieve your goals.
-            </p>
-            <Link to="/contact" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors text-lg font-semibold">
-              Start Your Project
-            </Link>
-          </div>
+      {/* CTA */}
+      <Section className="py-28 bg-dark-900/40 relative">
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div variants={fadeUp}>
+            <div className="rounded-lg card-premium p-12 sm:p-16">
+              <p className="text-sm font-mono uppercase tracking-widest text-neon-green/80 mb-4">
+                Start building
+              </p>
+              <h2 className="font-heading text-3xl sm:text-5xl font-light text-white mb-5">
+                Let's build something{" "}
+                <span className="gradient-text-warm">amazing</span>
+              </h2>
+              <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+                Ready to start your project? Get in touch and let's discuss how
+                we can help bring your vision to life.
+              </p>
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-2 px-10 py-4 rounded-md bg-neon-green text-dark-950 font-heading font-medium hover:bg-neon-lime transition-all duration-300"
+              >
+                Start Your Project
+                <ArrowRight
+                  size={18}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </Link>
+            </div>
+          </motion.div>
         </div>
-      </section>
+      </Section>
     </div>
   );
 }

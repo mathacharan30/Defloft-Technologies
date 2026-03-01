@@ -1,23 +1,28 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
-import { AuthProvider } from './contexts/AuthContext'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { useEffect } from "react";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
-  return null
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
 }
-import Layout from './components/Layout'
-import ProtectedRoute from './components/ProtectedRoute'
-import Home from './pages/Home'
-import About from './pages/About'
-import Services from './pages/Services'
-import Portfolio from './pages/Portfolio'
-import Contact from './pages/Contact'
-import Submissions from './pages/Submissions'
-import Login from './pages/Login'
+import Layout from "./components/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Portfolio from "./pages/Portfolio";
+import Contact from "./pages/Contact";
+import Submissions from "./pages/Submissions";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -27,7 +32,7 @@ function App() {
         <Routes>
           {/* Login route (no layout) */}
           <Route path="/login" element={<Login />} />
-          
+
           {/* Main routes with layout */}
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -35,19 +40,19 @@ function App() {
             <Route path="services" element={<Services />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="contact" element={<Contact />} />
-            <Route 
-              path="submissions" 
+            <Route
+              path="submissions"
               element={
                 <ProtectedRoute>
                   <Submissions />
                 </ProtectedRoute>
-              } 
+              }
             />
           </Route>
         </Routes>
       </AuthProvider>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

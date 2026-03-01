@@ -1,17 +1,19 @@
-import { Outlet } from 'react-router-dom'
-import Header from './Header'
-import Footer from './Footer'
+import { Outlet } from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
+import ParticleBackground from "./ParticleBackground";
 
 function Layout() {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-black flex flex-col relative">
+      <ParticleBackground />
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow relative z-10">
         <Outlet />
       </main>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

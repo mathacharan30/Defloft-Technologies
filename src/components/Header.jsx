@@ -1,164 +1,166 @@
-import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 function Header() {
-  const location = useLocation()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  
-  const isActive = (path) => {
-    return location.pathname === path
-  }
+  const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const closeMenu = () => {
-    setIsMenuOpen(false)
-  }
+  const isActive = (path) => location.pathname === path;
+
+  const navLinks = [
+    { path: "/", label: "Home" },
+    { path: "/about", label: "About" },
+    { path: "/services", label: "Services" },
+    { path: "/portfolio", label: "Work" },
+    { path: "/contact", label: "Contact" },
+  ];
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <nav className="container mx-auto px-4 sm:px-6 py-4">
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-500 ${
+        scrolled ? "pt-3 px-4" : "pt-0 px-0"
+      }`}
+    >
+      <nav
+        className={`transition-all duration-500 ${
+          scrolled
+            ? "max-w-4xl w-full rounded-2xl bg-dark-950/60 backdrop-blur-xl shadow-2xl shadow-black/30 px-5 py-2.5"
+            : "max-w-7xl w-full bg-transparent backdrop-blur-md px-4 sm:px-6 lg:px-8 py-4"
+        }`}
+      >
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2" onClick={closeMenu}>
-            <span className="text-lg sm:text-xl font-semibold text-gray-800">
-              Devloft <span className="text-blue-600">Technologies</span>
+          {/* Logo — custom wordmark style */}
+          <Link
+            to="/"
+            className="flex items-center gap-3 group"
+            onClick={closeMenu}
+          >
+            <span className="font-heading text-xl font-medium text-neon-green leading-none">
+              D
             </span>
+            <div
+              className={`flex flex-col transition-all duration-300 ${scrolled ? "hidden sm:flex" : "flex"}`}
+            >
+              <span className="font-heading text-[17px] font-medium text-white leading-tight tracking-tight">
+                Devloft
+              </span>
+              <span
+                className={`text-[10px] font-mono uppercase tracking-[0.2em] text-gray-500 leading-tight transition-all duration-300 ${scrolled ? "hidden" : "block"}`}
+              >
+                Technologies
+              </span>
+            </div>
           </Link>
-          
+
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link 
-              to="/" 
-              className={`font-medium hover:text-blue-700 transition ${
-                isActive('/') ? 'text-blue-600' : 'text-gray-600'
+          <div className="hidden md:flex items-center gap-0.5">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`relative px-3.5 py-2 text-sm font-medium transition-colors duration-300 ${scrolled ? "px-3" : "px-4"}`}
+              >
+                <span
+                  className={`font-heading tracking-wide ${isActive(link.path) ? "text-neon-green" : "text-gray-400 hover:text-white"}`}
+                >
+                  {link.label}
+                </span>
+                {isActive(link.path) && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-[2px] rounded-full bg-neon-green"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+              </Link>
+            ))}
+            <Link
+              to="/contact"
+              className={`ml-4 relative group text-sm font-heading font-medium rounded-full bg-gradient-to-bl from-neon-green via-white to-neon-green text-dark-950 hover:bg-neon-lime transition-all duration-300 ${
+                scrolled ? "px-5 py-2" : "px-6 py-2.5"
               }`}
             >
-              Home
-            </Link>
-            <Link 
-              to="/about" 
-              className={`hover:text-blue-600 transition ${
-                isActive('/about') ? 'text-blue-600 font-medium' : 'text-gray-600'
-              }`}
-            >
-              About
-            </Link>
-            <Link 
-              to="/services" 
-              className={`hover:text-blue-600 transition ${
-                isActive('/services') ? 'text-blue-600 font-medium' : 'text-gray-600'
-              }`}
-            >
-              Services
-            </Link>
-            <Link 
-              to="/portfolio" 
-              className={`hover:text-blue-600 transition ${
-                isActive('/portfolio') ? 'text-blue-600 font-medium' : 'text-gray-600'
-              }`}
-            >
-              Portfolio
-            </Link>
-            <Link 
-              to="/contact" 
-              className={`hover:text-blue-600 transition ${
-                isActive('/contact') ? 'text-blue-600 font-medium' : 'text-gray-600'
-              }`}
-            >
-              Contact
-            </Link>
-            <Link 
-              to="/contact" 
-              className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition"
-            >
-              Get Started
+              Start a Project
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden text-gray-600 hover:text-blue-600 transition p-2"
-            onClick={toggleMenu}
+          <button
+            className="md:hidden text-gray-400 hover:text-neon-green transition-colors p-2 rounded-lg"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
-        <div 
-          className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-            isMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
-          }`}
-        >
-          <div className="flex flex-col space-y-4 pb-4">
-            <Link 
-              to="/" 
-              onClick={closeMenu}
-              className={`font-medium hover:text-blue-700 transition px-4 py-2 rounded-lg ${
-                isActive('/') ? 'text-blue-600 bg-blue-50' : 'text-gray-600'
-              }`}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden overflow-hidden"
             >
-              Home
-            </Link>
-            <Link 
-              to="/about" 
-              onClick={closeMenu}
-              className={`hover:text-blue-600 transition px-4 py-2 rounded-lg ${
-                isActive('/about') ? 'text-blue-600 font-medium bg-blue-50' : 'text-gray-600'
-              }`}
-            >
-              About
-            </Link>
-            <Link 
-              to="/services" 
-              onClick={closeMenu}
-              className={`hover:text-blue-600 transition px-4 py-2 rounded-lg ${
-                isActive('/services') ? 'text-blue-600 font-medium bg-blue-50' : 'text-gray-600'
-              }`}
-            >
-              Services
-            </Link>
-            <Link 
-              to="/portfolio" 
-              onClick={closeMenu}
-              className={`hover:text-blue-600 transition px-4 py-2 rounded-lg ${
-                isActive('/portfolio') ? 'text-blue-600 font-medium bg-blue-50' : 'text-gray-600'
-              }`}
-            >
-              Portfolio
-            </Link>
-            <Link 
-              to="/contact" 
-              onClick={closeMenu}
-              className={`hover:text-blue-600 transition px-4 py-2 rounded-lg ${
-                isActive('/contact') ? 'text-blue-600 font-medium bg-blue-50' : 'text-gray-600'
-              }`}
-            >
-              Contact
-            </Link>
-            <Link
-              to="/contact"
-              onClick={closeMenu}
-              className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition mx-4"
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
+              <div
+                className={`flex flex-col gap-1 pt-4 pb-3 ${scrolled ? "px-1" : ""}`}
+              >
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.path}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                  >
+                    <Link
+                      to={link.path}
+                      onClick={closeMenu}
+                      className={`block px-4 py-3 rounded-lg text-sm font-heading font-medium transition-all ${
+                        isActive(link.path)
+                          ? "text-neon-green bg-neon-green/5 border-l-2 border-neon-green"
+                          : "text-gray-400 hover:text-white hover:bg-white/[0.02]"
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.05 }}
+                >
+                  <Link
+                    to="/contact"
+                    onClick={closeMenu}
+                    className="block mx-2 mt-2 px-5 py-3 text-sm font-heading font-medium rounded-full bg-neon-green text-dark-950 text-center"
+                  >
+                    Start a Project
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
-    </header>
-  )
+    </motion.header>
+  );
 }
 
-export default Header
+export default Header;
