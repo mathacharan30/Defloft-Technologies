@@ -23,6 +23,7 @@ import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import Submissions from "./pages/Submissions";
 import Login from "./pages/Login";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
         <Routes>
           {/* Login route (no layout) */}
           <Route path="/login" element={<Login />} />
+
+          {/* Standalone landing page (no nav/footer layout) */}
+          <Route path="/landingpage" element={<LandingPage />} />
 
           {/* Main routes with layout */}
           <Route path="/" element={<Layout />}>
