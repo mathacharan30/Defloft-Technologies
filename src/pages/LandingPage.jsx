@@ -588,7 +588,6 @@ export default function LandingPage() {
                 style={{ backgroundImage: "none" }}
               >
                 <option value="" className="bg-[#0a1929]">Select your city</option>
-                <option value="Mysore" className="bg-[#0a1929]">Mysore</option>
                 <option value="Bangalore" className="bg-[#0a1929]">Bangalore</option>
                 <option value="Other" className="bg-[#0a1929]">Other</option>
               </select>
