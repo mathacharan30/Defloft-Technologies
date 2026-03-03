@@ -57,7 +57,7 @@ function Submissions() {
   };
 
   return (
-    <div className="min-h-screen bg-dark-900">
+    <div className="min-h-screen bg-dark-900 pt-20">
       {/* Header */}
       <div className="relative border-b border-white/[0.06]">
         <div className="absolute inset-0 bg-gradient-to-r from-accent-purple/5 to-accent-cyan/5" />
