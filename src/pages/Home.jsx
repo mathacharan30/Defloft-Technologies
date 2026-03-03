@@ -237,7 +237,7 @@ function Home() {
                   <div className="flex items-center gap-4 sm:gap-5">
                     <div className="text-center">
                       <div className="font-heading text-sm sm:text-base font-medium text-white">
-                        10+
+                        100+
                       </div>
                       <div className="text-[8px] sm:text-[9px] text-gray-500 font-mono uppercase tracking-wider">
                         Projects

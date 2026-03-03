@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
@@ -51,9 +50,9 @@ function Section({ children, className = "" }) {
 
 // ─── data ──────────────────────────────────────────────────────────────────
 const stats = [
-  { icon: Star, value: "10+", label: "Projects Delivered" },
+  { icon: Star, value: "100+", label: "Projects Delivered" },
   { icon: CheckCircle2, value: "98%", label: "Client Satisfaction" },
-  { icon: MapPin, value: "Serving", label: "Mysore & Bangalore Businesses" },
+  { icon: MapPin, value: "Serving", label: "Bangalore Based Businesses" },
 ];
 
 const problems = [
@@ -101,7 +100,7 @@ const premiumFeatures = [
 ];
 
 const whyUs = [
-  { icon: MapPin, title: "Local Team in Mysore", desc: "Based locally for easy communication" },
+  { icon: MapPin, title: "Local Team in Bangalore", desc: "Based locally for easy communication" },
   { icon: Clock, title: "Fast Communication", desc: "Quick response to your needs" },
   { icon: DollarSign, title: "Affordable Pricing", desc: "Premium quality at competitive rates" },
   { icon: Crosshair, title: "Conversion-Focused Design", desc: "Built to generate leads and sales" },
@@ -110,9 +109,9 @@ const whyUs = [
 ];
 
 const projects = [
-  { img: "/images/Web 1.png", category: "Business", title: "Corporate Website" },
-  { img: "/images/Web 2.png", category: "Online Store", title: "E-Commerce Platform" },
-  { img: "/images/Web 3.png", category: "Food & Beverage", title: "Restaurant Website" },
+  { img: "/images/Web 1.png", category: "Engineering", title: "Engineering Website" },
+  { img: "/images/Web 2.png", category: "Marketing", title: "Marketing and Branding Website" },
+  { img: "/images/Web 3.png", category: "Digital", title: "Digital Marketing Website" },
 ];
 
 const WHATSAPP_NUM = "918147814232";
@@ -212,14 +211,14 @@ export default function LandingPage() {
               Website Development
               <br />
               Company in{" "}
-              <span className="text-[#00e5c0]">Mysore &amp; Bangalore</span>
+              <span className="text-[#00e5c0]">Bangalore</span>
             </motion.h1>
             <motion.p
               variants={fadeUp}
               className="text-gray-400 text-base md:text-lg leading-relaxed max-w-lg"
             >
-              We build high-converting, mobile-friendly websites for local
-              businesses that want more leads and customers.
+              We build high-converting, mobile-friendly websites for
+              businesses in Bangalore that want more leads and customers.
             </motion.p>
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4 text-sm text-[#00e5c0]">
               {["Affordable Pricing", "Fast Delivery", "Local Support"].map((t) => (
@@ -262,12 +261,9 @@ export default function LandingPage() {
             <div className="relative w-full max-w-md xl:max-w-lg">
               <div className="rounded-2xl border border-white/10 bg-[#0a1929]/60 backdrop-blur-sm p-4 shadow-2xl shadow-[#00e5c0]/5">
                 <img
-                  src="/images/Web 5.png"
+                  src="/images/Web 1.png"
                   alt="Website preview"
                   className="w-full rounded-xl object-cover"
-                  onError={(e) => {
-                    e.target.src = "/images/Web 1.png";
-                  }}
                 />
               </div>
               {/* glow */}
@@ -657,7 +653,7 @@ export default function LandingPage() {
             </p>
             <p className="text-gray-500 text-sm leading-relaxed">
               Building modern, high-converting websites for businesses in
-              Bangalore &amp; Mysore.
+              Bangalore.
             </p>
           </div>
 
@@ -673,7 +669,7 @@ export default function LandingPage() {
               </li>
               <li className="flex items-center gap-2">
                 <MapPin size={13} className="text-[#00e5c0]" />
-                Bangalore &amp; Mysore, Karnataka
+                34, 2nd Floor, 2nd Cross, Rajagopalnagar Main Rd, Kareemsab Layout, Hegganahalli, Bengaluru, Karnataka 560091
               </li>
             </ul>
           </div>
@@ -690,13 +686,8 @@ export default function LandingPage() {
                 "E-Commerce Solutions",
                 "SEO Optimization",
               ].map((s) => (
-                <li key={s}>
-                  <Link
-                    to="/services"
-                    className="text-[#00e5c0] hover:underline"
-                  >
-                    {s}
-                  </Link>
+                <li key={s} className="text-gray-400">
+                  {s}
                 </li>
               ))}
             </ul>
