@@ -4,9 +4,6 @@ import {
   Phone,
   MapPin,
   ArrowUpRight,
-  Linkedin,
-  Twitter,
-  Github,
 } from "lucide-react";
 
 function Footer() {
@@ -40,22 +37,6 @@ function Footer() {
               From concept to deployment — we craft technology that moves
               businesses forward.
             </p>
-            <div className="flex gap-3">
-              {[
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
-                { icon: Twitter, href: "#", label: "Twitter" },
-                { icon: Github, href: "#", label: "GitHub" },
-              ].map(({ icon: Icon, href, label }, i) => (
-                <a
-                  key={i}
-                  href={href}
-                  aria-label={label}
-                  className="w-10 h-10 rounded-md border border-white/[0.06] flex items-center justify-center text-gray-500 hover:text-neon-green hover:border-neon-green/20 transition-all duration-300"
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Newsletter / CTA area */}
@@ -156,9 +137,8 @@ function Footer() {
                   className="text-neon-green mt-1 flex-shrink-0 opacity-70"
                 />
                 <span className="text-gray-500 text-sm leading-relaxed">
-                  No.804, 772/A, B' Block, 3rd Stage,
-                  <br />
-                  Vijayanagar, 570017 — Mysore, India
+                  No 21, Srigandha Kaval, 40 Feet Road, Srigandha Nagar,
+                  Hagganahalli, Sunkadakatte, Bengaluru, Karnataka 560091
                 </span>
               </li>
             </ul>

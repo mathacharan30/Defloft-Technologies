@@ -38,7 +38,7 @@ const contactInfo = [
     icon: MapPin,
     label: "Office",
     value:
-      "No.804, 772/A, B\u2019 Block, 3rd Stage, Vijayanagar 570017 — Mysore, India",
+      "No 21, Srigandha Kaval, 40 Feet Road, Srigandha Nagar, Hagganahalli, Sunkadakatte, Bengaluru, Karnataka 560091",
   },
 ];
 
@@ -351,7 +351,7 @@ function Contact() {
             <h2 className="font-heading text-3xl font-medium text-white mb-2">
               Find Us
             </h2>
-            <p className="text-gray-500">Visit our office in Mysuru</p>
+            <p className="text-gray-500">Visit our office in Bengaluru</p>
           </motion.div>
           <motion.div
             variants={fadeUp}
@@ -359,7 +359,7 @@ function Contact() {
             className="rounded-lg overflow-hidden border border-white/[0.06] h-96"
           >
             <iframe
-              src="https://maps.google.com/maps?q=12.320136389047713,76.60644375021546&z=18&output=embed"
+              src="https://maps.google.com/maps?q=No%2021%2C%20Srigandha%20Kaval%2C%2040%20Feet%20Road%2C%20Srigandha%20Nagar%2C%20Hagganahalli%2C%20Sunkadakatte%2C%20Bengaluru%2C%20Karnataka%20560091&z=18&output=embed"
               width="100%"
               height="100%"
               style={{
