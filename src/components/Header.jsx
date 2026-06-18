@@ -22,6 +22,7 @@ function Header() {
     { path: "/services", label: "Services" },
     { path: "/portfolio", label: "Work" },
     { path: "/contact", label: "Contact" },
+    { path: "/customer-reviews", label: "Customer Review" },
   ];
 
   const closeMenu = () => setIsMenuOpen(false);
@@ -67,7 +68,7 @@ function Header() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-0.5">
+          <div className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -100,7 +101,7 @@ function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-400 hover:text-neon-green transition-colors p-2 rounded-lg"
+            className="lg:hidden text-gray-400 hover:text-neon-green transition-colors p-2 rounded-lg"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -116,7 +117,7 @@ function Header() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden overflow-hidden"
+              className="lg:hidden overflow-hidden"
             >
               <div
                 className={`flex flex-col gap-1 pt-4 pb-3 ${scrolled ? "px-1" : ""}`}

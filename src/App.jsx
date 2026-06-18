@@ -21,6 +21,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
+import CustomerReviews from "./pages/CustomerReviews";
 import Submissions from "./pages/Submissions";
 import Login from "./pages/Login";
 import LandingPage from "./pages/LandingPage";
@@ -44,6 +45,7 @@ function App() {
             <Route path="services" element={<Services />} />
             <Route path="portfolio" element={<Portfolio />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="customer-reviews" element={<CustomerReviews />} />
             <Route
               path="submissions"
               element={
