@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+"use client";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
@@ -242,7 +243,7 @@ function ServiceCard({ service, index }) {
             {service.short}
           </span>
           <Link
-            to="/contact"
+            href="/contact"
             className="group/link inline-flex items-center gap-1.5 text-sm font-heading font-medium transition-colors duration-300"
             style={{ color }}
           >
@@ -344,7 +345,7 @@ function Services() {
                 stage — no shortcuts, no surprises.
               </p>
               <Link
-                to="/contact"
+                href="/contact"
                 className="group inline-flex items-center gap-2 text-neon-green text-sm font-heading font-medium hover:text-neon-lime transition-colors duration-300"
               >
                 Start a conversation
@@ -393,7 +394,7 @@ function Services() {
               what you're working on.
             </p>
             <Link
-              to="/contact"
+              href="/contact"
               className="group inline-flex items-center gap-2 px-10 py-4 rounded-md bg-neon-green text-dark-950 font-heading font-medium hover:bg-neon-lime transition-all duration-300"
             >
               Contact Our Team

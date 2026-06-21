@@ -1,10 +1,12 @@
+"use client";
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 function Header() {
-  const location = useLocation();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -14,7 +16,7 @@ function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) => pathname === path;
 
   const navLinks = [
     { path: "/", label: "Home" },
@@ -46,7 +48,7 @@ function Header() {
         <div className="flex items-center justify-between">
           {/* Logo — custom wordmark style */}
           <Link
-            to="/"
+            href="/"
             className="flex items-center gap-3 group"
             onClick={closeMenu}
           >
@@ -72,7 +74,7 @@ function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.path}
-                to={link.path}
+                href={link.path}
                 className={`relative px-3.5 py-2 text-sm font-medium transition-colors duration-300 ${scrolled ? "px-3" : "px-4"}`}
               >
                 <span
@@ -90,7 +92,7 @@ function Header() {
               </Link>
             ))}
             <Link
-              to="/contact"
+              href="/contact"
               className={`ml-4 relative group text-sm font-heading font-medium rounded-full bg-gradient-to-bl from-neon-green via-white to-neon-green text-dark-950 hover:bg-neon-lime transition-all duration-300 ${
                 scrolled ? "px-5 py-2" : "px-6 py-2.5"
               }`}
@@ -130,7 +132,7 @@ function Header() {
                     transition={{ delay: i * 0.05 }}
                   >
                     <Link
-                      to={link.path}
+                      href={link.path}
                       onClick={closeMenu}
                       className={`block px-4 py-3 rounded-lg text-sm font-heading font-medium transition-all ${
                         isActive(link.path)
@@ -148,7 +150,7 @@ function Header() {
                   transition={{ delay: navLinks.length * 0.05 }}
                 >
                   <Link
-                    to="/contact"
+                    href="/contact"
                     onClick={closeMenu}
                     className="block mx-2 mt-2 px-5 py-3 text-sm font-heading font-medium rounded-full bg-neon-green text-dark-950 text-center"
                   >

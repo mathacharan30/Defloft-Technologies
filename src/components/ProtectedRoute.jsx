@@ -1,14 +1,23 @@
-import { Navigate, useLocation } from "react-router-dom";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useAuth } from "../contexts/AuthContext";
 import { ShieldX } from "lucide-react";
 
 function ProtectedRoute({ children }) {
-  const { currentUser, isAuthorized } = useAuth();
-  const location = useLocation();
+  const { currentUser, isAuthorized, loading } = useAuth();
+  const router = useRouter();
 
-  if (!currentUser) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
+  useEffect(() => {
+    if (!loading && !currentUser) {
+      router.replace("/login");
+    }
+  }, [loading, currentUser, router]);
+
+  if (loading) return null;
+
+  if (!currentUser) return null;
 
   if (!isAuthorized) {
     return (
@@ -27,7 +36,7 @@ function ProtectedRoute({ children }) {
             authorized to access this area.
           </p>
           <button
-            onClick={() => (window.location.href = "/")}
+            onClick={() => router.push("/")}
             className="inline-flex items-center justify-center px-8 py-3 rounded-xl bg-gradient-to-r from-accent-purple to-accent-cyan text-white font-semibold hover:shadow-lg hover:shadow-accent-purple/20 transition-all"
           >
             Return to Home

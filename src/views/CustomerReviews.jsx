@@ -1,7 +1,8 @@
+"use client";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, ExternalLink, Quote, Star } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -208,7 +209,7 @@ function CustomerReviews() {
                 develop digital systems that support real business workflows.
               </p>
               <Link
-                to="/contact"
+                href="/contact"
                 className="group inline-flex items-center gap-2 px-10 py-4 rounded-md bg-neon-green text-dark-950 font-heading font-medium hover:bg-neon-lime transition-all duration-300"
               >
                 Start Your Project

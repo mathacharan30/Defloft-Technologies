@@ -1,5 +1,6 @@
+"use client";
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from 'framer-motion';
 import { getSubmissions, clearSubmissions, exportSubmissions } from '../data/submissions';
 import { useAuth } from '../contexts/AuthContext';
@@ -10,7 +11,7 @@ function Submissions() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [loading, setLoading] = useState(true);
   const { currentUser, logout } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   useEffect(() => {
     loadSubmissions();
@@ -31,7 +32,7 @@ function Submissions() {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate('/login');
+      router.push('/login');
     } catch (error) {
       console.error('Logout error:', error);
     }

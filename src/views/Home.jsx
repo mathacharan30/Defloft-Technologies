@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+"use client";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
@@ -161,7 +162,7 @@ function Home() {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <Link
-                  to="/contact"
+                  href="/contact"
                   className="group inline-flex items-center justify-center gap-1 px-8 py-4 rounded-full bg-gradient-to-bl from-neon-green via-blue-50 to-blue-300 text-dark-950 font-heading font-medium hover:bg-neon-lime transition-all duration-300"
                 >
                   Start a Project
@@ -171,7 +172,7 @@ function Home() {
                   />
                 </Link>
                 <Link
-                  to="/services"
+                  href="/services"
                   className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full backdrop-blur-md bg-white/[0.04] border border-white/[0.08] text-white font-heading font-medium hover:bg-white/[0.08] hover:border-neon-green/20 transition-all duration-300"
                 >
                   Explore Services
@@ -310,7 +311,7 @@ function Home() {
                       {service.desc}
                     </p>
                     <Link
-                      to="/services"
+                      href="/services"
                       className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 group-hover:text-neon-green transition-colors duration-300"
                     >
                       Learn more{" "}
@@ -344,7 +345,7 @@ function Home() {
             </motion.div>
             <motion.div variants={fadeUp} custom={1}>
               <Link
-                to="/portfolio"
+                href="/portfolio"
                 className="inline-flex items-center gap-2 text-sm font-heading font-medium text-gray-400 hover:text-neon-green transition-colors duration-300"
               >
                 View all projects
@@ -372,7 +373,7 @@ function Home() {
               },
             ].map((project, i) => (
               <motion.div key={i} variants={fadeUp} custom={i}>
-                <Link to="/portfolio" className="group block">
+                <Link href="/portfolio" className="group block">
                   <div className="rounded-lg card-premium overflow-hidden transition-all duration-500">
                     <div className="relative overflow-hidden h-52">
                       <img
@@ -491,7 +492,7 @@ function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/contact"
+                href="/contact"
                 className="group inline-flex items-center justify-center gap-2 px-10 py-4 rounded-md bg-neon-green text-dark-950 font-heading font-medium hover:bg-neon-lime transition-all duration-300"
               >
                 Start a Project
@@ -501,7 +502,7 @@ function Home() {
                 />
               </Link>
               <Link
-                to="/portfolio"
+                href="/portfolio"
                 className="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-md backdrop-blur-md bg-white/[0.04] border border-white/[0.08] text-white font-heading font-medium hover:bg-white/[0.08] hover:border-neon-green/20 transition-all duration-300"
               >
                 View Our Work

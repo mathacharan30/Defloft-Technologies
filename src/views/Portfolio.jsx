@@ -1,5 +1,6 @@
+"use client";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight, ExternalLink } from "lucide-react";
@@ -196,7 +197,7 @@ function Portfolio() {
                 we can help bring your vision to life.
               </p>
               <Link
-                to="/contact"
+                href="/contact"
                 className="group inline-flex items-center gap-2 px-10 py-4 rounded-md bg-neon-green text-dark-950 font-heading font-medium hover:bg-neon-lime transition-all duration-300"
               >
                 Start Your Project

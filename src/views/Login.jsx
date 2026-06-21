@@ -1,5 +1,7 @@
+"use client";
 import { useState } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useAuth } from "../contexts/AuthContext";
 import { Loader2, ArrowLeft } from "lucide-react";
@@ -15,7 +17,7 @@ function Login() {
   const { login, resetPassword } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/submissions";
+  const from = "/submissions";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +29,7 @@ function Login() {
       setError("");
       setLoading(true);
       await login(email, password);
-      navigate(from, { replace: true });
+      router.replace(from);
     } catch (error) {
       console.error("Login error:", error);
       if (error.message.includes("not authorized")) {

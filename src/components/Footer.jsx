@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+"use client";
+import Link from "next/link";
 import {
   Mail,
   Phone,
@@ -18,7 +19,7 @@ function Footer() {
         {/* Top section — large brand + CTA */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-16">
           <div className="max-w-md">
-            <Link to="/" className="flex items-center gap-3 mb-6">
+            <Link href="/" className="flex items-center gap-3 mb-6">
               <span className="font-heading text-xl font-medium text-neon-green leading-none">
                 D
               </span>
@@ -49,7 +50,7 @@ function Footer() {
                 Ready to start your next project?
               </p>
               <Link
-                to="/contact"
+                href="/contact"
                 className="group flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-md bg-neon-green text-dark-950 font-heading font-medium text-sm hover:bg-neon-lime transition-all duration-300"
               >
                 Get in Touch
@@ -73,7 +74,7 @@ function Footer() {
                 (item) => (
                   <li key={item}>
                     <Link
-                      to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                      href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                       className="group flex items-center gap-1.5 text-gray-500 hover:text-neon-green text-sm transition-colors duration-300"
                     >
                       <span className="w-0 group-hover:w-2 h-px bg-neon-green transition-all duration-300" />
@@ -99,7 +100,7 @@ function Footer() {
               ].map((item) => (
                 <li key={item}>
                   <Link
-                    to="/services"
+                    href="/services"
                     className="group flex items-center gap-1.5 text-gray-500 hover:text-neon-green text-sm transition-colors duration-300"
                   >
                     <span className="w-0 group-hover:w-2 h-px bg-neon-green transition-all duration-300" />
