@@ -261,12 +261,35 @@ function FAQ() {
   );
 }
 
+function StickyBar({ onDemo }) {
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden flex border-t border-white/[0.10] bg-[#0a0a0f]/95 backdrop-blur-md">
+      <a href={`tel:+918147814232`}
+        className="flex-1 flex flex-col items-center justify-center gap-1 py-3 text-white hover:bg-white/5 transition-colors border-r border-white/[0.08]">
+        <Phone size={18} className="text-gray-300" />
+        <span className="text-[11px] font-semibold text-gray-300">Call Us</span>
+      </a>
+      <a href={`https://wa.me/918147814232`} target="_blank" rel="noreferrer"
+        className="flex-1 flex flex-col items-center justify-center gap-1 py-3 bg-[#25D366] hover:bg-[#20bd5a] transition-colors border-r border-white/[0.08]">
+        <MessageCircle size={18} className="text-white" />
+        <span className="text-[11px] font-bold text-white">WhatsApp</span>
+      </a>
+      <button onClick={onDemo}
+        className="flex-1 flex flex-col items-center justify-center gap-1 py-3 bg-[#ff5e1a] hover:bg-[#ff7a18] transition-colors">
+        <ArrowRight size={18} className="text-white" />
+        <span className="text-[11px] font-bold text-white">Demo</span>
+      </button>
+    </div>
+  );
+}
+
 export default function GymLanding() {
   const formRef = useRef(null);
   const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0f] text-white font-sans overflow-x-hidden pb-[60px] md:pb-0">
+      <StickyBar onDemo={scrollToForm} />
 
       {/* NAV */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 md:px-10 py-3.5 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-white/[0.07]">
@@ -303,7 +326,7 @@ export default function GymLanding() {
                 <Zap size={11} fill="currentColor" /> India's #1 Gym Management Software
               </span>
             </motion.div>
-            <motion.h1 variants={fadeUp} className="font-heading text-4xl sm:text-5xl xl:text-[3.4rem] font-bold leading-[1.08] text-white">
+            <motion.h1 variants={fadeUp} className="font-heading text-[2.1rem] sm:text-5xl xl:text-[3.4rem] font-bold leading-[1.08] text-white">
               Gym Management Software
               <br />Trusted by <span className="text-[#ff5e1a]">500+ Gyms</span>
               <br />Across India
@@ -312,7 +335,7 @@ export default function GymLanding() {
               All-in-one gym management system with WhatsApp automation, biometric access,
               GST billing, lead management and analytics. Your gym runs itself.
             </motion.p>
-            <motion.div variants={fadeUp} className="grid grid-cols-2 gap-2.5 text-sm text-gray-300 max-w-md">
+            <motion.div variants={fadeUp} className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-300 max-w-md">
               {[
                 "WhatsApp AI bot & bulk messaging",
                 "Biometric + QR + RFID access",
