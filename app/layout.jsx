@@ -1,5 +1,8 @@
 import "./globals.css";
-import Providers from "./providers";
+import dynamic from "next/dynamic";
+
+// Firebase Auth uses browser-only APIs — never run on the server.
+const Providers = dynamic(() => import("./providers"), { ssr: false });
 
 export const metadata = {
   metadataBase: new URL("https://devlofttech.com"),
