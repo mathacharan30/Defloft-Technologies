@@ -4,9 +4,9 @@ import { motion, useInView } from "framer-motion";
 import {
   ArrowRight, Phone, MessageCircle, CheckCircle2, AlertCircle,
   Users, CreditCard, Fingerprint, BellRing, CalendarClock, BarChart3,
-  Dumbbell, Building2, Smartphone, Zap,
-  Loader2, CheckCheck, ChevronDown, Star,
-  UserPlus, Briefcase, Megaphone, MapPin, ArrowUpRight,
+  Dumbbell, Zap, Loader2, CheckCheck, ChevronDown, Star,
+  Briefcase, MapPin, ArrowUpRight, ScanLine, Wrench,
+  Package, Receipt, Settings, PieChart, FileSpreadsheet,
 } from "lucide-react";
 import { addSubmission } from "../data/submissions";
 
@@ -44,114 +44,147 @@ const stats = [
   { value: "99%", label: "Customer Retention", color: "text-neon-green" },
 ];
 
-const features = [
+const modules = [
   {
-    icon: MessageCircle, tag: "AUTOMATION",
-    title: "WhatsApp Automation & AI Bot",
-    desc: "Auto-reminders for renewals, dues, birthdays and class updates. 24/7 AI bot handles member queries — zero manual follow-up.",
-    bullets: ["Bulk WhatsApp messaging", "Auto renewal & due alerts", "Birthday & anniversary wishes"],
-    accent: "text-neon-green",
+    icon: Users, tag: "MEMBERS", accent: "text-neon-green",
+    title: "Member Management",
+    desc: "Complete member database with powerful search, filters and bulk operations.",
+    bullets: [
+      "Member list with Active / Expired / Absentee filters",
+      "Add & edit member with photo upload",
+      "Member profile with QR code generation & download",
+      "Attendance calendar — monthly view & visit count",
+      "Payment history per member",
+      "Bulk Excel import & export",
+      "SMS reminders for dues & renewals",
+    ],
   },
   {
-    icon: Fingerprint, tag: "ACCESS CONTROL",
-    title: "Biometric & Turnstile Access",
-    desc: "Fingerprint, face recognition, RFID and QR check-in. Expired members are blocked automatically at entry.",
-    bullets: ["Fingerprint / face / RFID", "Auto-block expired members", "Real-time attendance logs"],
-    accent: "text-electric-cyan",
+    icon: CreditCard, tag: "BILLING", accent: "text-electric-cyan",
+    title: "Payments & Billing",
+    desc: "Flexible billing that handles every payment scenario your gym faces.",
+    bullets: [
+      "Payment list with date / mode / status filters",
+      "Dues & Expired tab — members with pending dues",
+      "Auto-calculation of balance dues & expiry dates",
+      "Cash, Card, UPI, Bank Transfer & Cheque modes",
+      "Category-based plans — Gym, Zumba, Group Classes",
+      "Monthly / Quarterly / 6-month / Annual / Special offer plans",
+    ],
   },
   {
-    icon: CreditCard, tag: "BILLING",
-    title: "Gym Billing & GST Invoicing",
-    desc: "Auto-generate GST invoices, accept UPI and card payments. WhatsApp reminders cut pending dues by 72%.",
-    bullets: ["UPI / card / cash tracking", "Auto-GST invoices", "Daily collection reports"],
-    accent: "text-electric-blue",
+    icon: ScanLine, tag: "CHECK-IN", accent: "text-electric-blue",
+    title: "Attendance & Check-in",
+    desc: "Fast, accurate check-ins via QR, camera scanner or hardware barcode reader.",
+    bullets: [
+      "Camera-based QR code scanner (html5-qrcode)",
+      "Hardware barcode scanner support",
+      "Check-in & check-out with duration tracking",
+      "Standalone Scanner Kiosk mode (no nav, full-screen)",
+      "Attendance log — Today / 7 days / Month / Custom",
+      "Duplicate scan prevention with audio feedback",
+    ],
   },
   {
-    icon: UserPlus, tag: "CRM",
-    title: "Lead Management & CRM",
-    desc: "Capture leads from Instagram, Facebook and walk-ins. Automated follow-ups track every prospect from enquiry to enrollment.",
-    bullets: ["Social media lead capture", "Automated follow-up messages", "Sales funnel insights"],
-    accent: "text-neon-green",
+    icon: CalendarClock, tag: "CLASSES", accent: "text-neon-green",
+    title: "Class Management",
+    desc: "Schedule and manage every class type your gym offers, all in one place.",
+    bullets: [
+      "Class types: Zumba, Yoga, Dance, HIIT, Kids Dance, Gym",
+      "Trainer assignment per class",
+      "Multiple time slots per class (day + start/end times)",
+      "Enrolled members list per class",
+    ],
   },
   {
-    icon: Users, tag: "MEMBERS",
-    title: "Member Management Software",
-    desc: "Complete member profiles, photo, documents, membership history and plans in one searchable database.",
-    bullets: ["Member photo & documents", "Plan & renewal history", "Online member portal"],
-    accent: "text-electric-cyan",
+    icon: Briefcase, tag: "STAFF", accent: "text-electric-cyan",
+    title: "Staff Management",
+    desc: "Manage your entire team with role-based access and individual credentials.",
+    bullets: [
+      "Roles: Trainer, Staff, Manager, Receptionist",
+      "Staff profile with salary & joining date",
+      "Create login credentials (Firebase auth per staff)",
+      "Admin: full access · Staff: check-in only",
+      "Staff QR code for identification",
+    ],
   },
   {
-    icon: CalendarClock, tag: "SCHEDULING",
-    title: "Class & Trainer Scheduling",
-    desc: "Assign trainers, schedule group classes, manage PT sessions and let members book online.",
-    bullets: ["Group class booking", "PT session scheduling", "Online self-booking portal"],
-    accent: "text-electric-blue",
+    icon: BarChart3, tag: "ANALYTICS", accent: "text-electric-blue",
+    title: "Dashboard & Analytics",
+    desc: "Live business intelligence so you always know where your gym stands.",
+    bullets: [
+      "Revenue (all-time & monthly), active & expired members",
+      "Daily check-ins at a glance",
+      "Members expiring in the next 7 days",
+      "Revenue vs Expenses bar chart (6 months)",
+      "Member status pie chart",
+      "Revenue breakdown by membership plan",
+    ],
   },
   {
-    icon: Dumbbell, tag: "WELLNESS",
-    title: "Diet & Workout Plans",
-    desc: "Build and share personalised diet and workout programs with each member digitally via the app.",
-    bullets: ["2,000+ workout GIFs library", "Custom diet programs", "Member progress tracking"],
-    accent: "text-neon-green",
+    icon: Wrench, tag: "EQUIPMENT", accent: "text-neon-green",
+    title: "Equipment Management",
+    desc: "Track every piece of equipment and never miss a service date again.",
+    bullets: [
+      "Equipment list with purchase date & price",
+      "Next service date tracking",
+      "Service status: Overdue / Due Soon / Good",
+    ],
   },
   {
-    icon: Briefcase, tag: "OPERATIONS",
-    title: "Staff Management & Payroll",
-    desc: "Role-based staff access, attendance tracking, commissions and payroll processing — all in one place.",
-    bullets: ["Role-based access control", "Staff attendance & leaves", "Payroll & commissions"],
-    accent: "text-electric-cyan",
+    icon: Package, tag: "INVENTORY", accent: "text-electric-cyan",
+    title: "Supplements Inventory",
+    desc: "Keep supplement stock under control with real-time quantity tracking.",
+    bullets: [
+      "Stock tracking with quantity & price",
+      "Status: Out of Stock / Low Stock / In Stock",
+    ],
   },
   {
-    icon: BarChart3, tag: "ANALYTICS",
-    title: "Reports & Analytics",
-    desc: "Live dashboards for revenue, attendance, membership trends and retention to sharpen every decision.",
-    bullets: ["Revenue & collection reports", "Attendance heatmaps", "Membership plan analytics"],
-    accent: "text-electric-blue",
+    icon: Receipt, tag: "EXPENSES", accent: "text-electric-blue",
+    title: "Expense Tracking",
+    desc: "Monitor every rupee going out — by category, month and payment mode.",
+    bullets: [
+      "Categories: Rent, Electricity, Salaries, Equipment, Supplements, Maintenance, Marketing",
+      "Monthly expense tracking & category breakdown",
+      "Payment mode tracking per expense",
+    ],
   },
   {
-    icon: Building2, tag: "ENTERPRISE",
-    title: "Multi-Branch Management",
-    desc: "Manage all your gym locations from one login with branch-wise reports, member data and staff control.",
-    bullets: ["Single login all branches", "Branch-wise P&L reports", "Centralised member database"],
-    accent: "text-neon-green",
-  },
-  {
-    icon: Smartphone, tag: "MOBILE",
-    title: "Branded Member App",
-    desc: "Your own branded gym app on iOS & Android — members view plans, pay online, book classes and track workouts.",
-    bullets: ["iOS & Android app", "Online payments in-app", "Class & PT booking"],
-    accent: "text-electric-cyan",
-  },
-  {
-    icon: Megaphone, tag: "MARKETING",
-    title: "Marketing & Promotions",
-    desc: "Bulk WhatsApp & SMS campaigns, referral programs and special offer notifications to drive renewals.",
-    bullets: ["Bulk WhatsApp campaigns", "Referral tracking", "Festival & offer messages"],
-    accent: "text-electric-blue",
+    icon: Settings, tag: "SETTINGS", accent: "text-neon-green",
+    title: "Gym Settings",
+    desc: "Configure your gym profile, plans and display preferences with ease.",
+    bullets: [
+      "Gym name, location & contact details",
+      "Membership plan CRUD — price, duration, category",
+      "Dark / Light mode toggle",
+    ],
   },
 ];
 
 const steps = [
   { num: "01", title: "Book a Free Demo", desc: "Our team walks you through GymOS live in 15 minutes — tailored to your gym's needs." },
-  { num: "02", title: "We Set Up Everything", desc: "We migrate your existing member data and configure your plans. Go live in 48 hours." },
+  { num: "02", title: "We Set Up Everything", desc: "We migrate your existing member data, configure your plans and set up staff logins. Go live in 48 hours." },
   { num: "03", title: "Your Gym Runs Itself", desc: "Renewals, reminders, billing and attendance run on autopilot. You focus on growth." },
 ];
 
 const allFeatures = [
-  "Unlimited members",
-  "Member & billing management",
-  "GST invoicing & UPI payments",
-  "Biometric + QR + app check-in",
-  "WhatsApp AI bot & bulk messaging",
-  "Automated renewal & due reminders",
-  "Lead management & CRM",
-  "Trainer & class scheduling",
-  "Diet & workout plans",
-  "Staff management & payroll",
-  "Advanced analytics & reports",
-  "Multi-branch management",
-  "Branded member mobile app",
-  "Priority support",
+  "Unlimited members & staff accounts",
+  "Member QR code profiles & attendance calendar",
+  "Bulk Excel import & export",
+  "SMS renewal & due reminders",
+  "Multi-mode billing — Cash, UPI, Card, Bank Transfer",
+  "Auto dues calculation & expiry tracking",
+  "Camera & hardware QR / barcode check-in",
+  "Standalone kiosk mode for reception desk",
+  "Class scheduling — Zumba, Yoga, HIIT, Dance & more",
+  "Role-based staff access with Firebase auth",
+  "Equipment service tracking",
+  "Supplements inventory management",
+  "Expense tracking by category",
+  "Revenue vs Expenses analytics dashboard",
+  "Membership plan CRUD in Settings",
+  "Dark / Light mode",
 ];
 
 const plans = [
@@ -168,26 +201,26 @@ const plans = [
 const testimonials = [
   {
     name: "Rajesh Kumar", role: "Owner, PowerFit Gym", city: "Bangalore", members: "320 members", rating: 5,
-    text: "I used to spend 2 hours every morning on Excel and WhatsApp follow-ups. With GymOS, renewals happen automatically and my pending dues dropped by 60% in the first month.",
+    text: "The QR check-in kiosk at our reception desk is a game changer. Members just scan and walk in. Pending dues dropped 60% in the first month with the SMS reminders.",
   },
   {
     name: "Priya Sharma", role: "Owner, FitZone Studio", city: "Hyderabad", members: "480 members", rating: 5,
-    text: "The biometric integration and WhatsApp automation alone were worth it. Our team was set up in 2 days and the support from Devloft was outstanding.",
+    text: "We run Zumba, Yoga and HIIT classes and the class scheduling module handles all of it. Trainer assignment, time slots, enrolled members — everything in one screen.",
   },
   {
     name: "Arun Menon", role: "Owner, IronEdge Gym", city: "Chennai", members: "3 branches", rating: 5,
-    text: "Managing 3 branches used to be a nightmare. Now one dashboard shows everything — revenue, attendance, member counts — for all locations in real time.",
+    text: "The dashboard is what sold me. Revenue vs expenses chart, members expiring in 7 days, plan-wise breakdown — I check it every morning on my phone.",
   },
 ];
 
 const faqs = [
-  { q: "What is GymOS gym management software?", a: "GymOS is an all-in-one gym management software built for Indian gyms and fitness studios. It covers member management, billing, GST invoices, biometric attendance, WhatsApp automation, lead management, trainer scheduling, diet plans, staff payroll and analytics — all from one dashboard." },
-  { q: "How much does gym management software cost in India?", a: "GymOS is priced at ₹799/month or ₹8,999/year (saving ₹589 vs monthly). Both plans include all features — unlimited members, biometric attendance, WhatsApp automation, GST billing, lead management, staff payroll and more. No setup fees and free data migration included." },
-  { q: "Does GymOS support WhatsApp reminders for renewals?", a: "Yes. GymOS automatically sends WhatsApp and SMS reminders to members before their membership expires, for pending dues, birthdays and anniversaries — with a 24/7 AI bot — without any manual work." },
-  { q: "Can it manage multiple gym branches?", a: "Yes. GymOS Enterprise supports multi-branch management from one login with branch-wise revenue reports, attendance data and a centralised member database." },
-  { q: "Does GymOS support biometric attendance for gyms?", a: "Yes. GymOS integrates with fingerprint devices, face recognition, RFID cards and QR code scanners. Expired or suspended members are automatically blocked at entry." },
-  { q: "Is there a free trial for GymOS?", a: "We offer a free 15-minute personalised demo where our team walks you through the software live. We also migrate your existing member data for free and go live within 48 hours." },
-  { q: "Which cities does GymOS serve in India?", a: "GymOS serves gyms across all major Indian cities including Bangalore, Mumbai, Hyderabad, Chennai, Delhi NCR, Pune, Kolkata, Ahmedabad, Jaipur, Surat, Lucknow, Indore, Chandigarh, Kochi, Coimbatore, Nagpur, Vizag and more." },
+  { q: "What is GymOS gym management software?", a: "GymOS is a complete gym management ERP built for Indian gyms and fitness studios. It covers member management with QR profiles, billing with auto dues calculation, QR/barcode attendance, class scheduling, staff management with role-based access, equipment tracking, supplements inventory, expense management and a live analytics dashboard — all from one system." },
+  { q: "How much does gym management software cost in India?", a: "GymOS is priced at ₹799/month or ₹8,999/year (saving ₹589 vs monthly). Both plans include all features — unlimited members, all modules, and full access. No setup fees and free data migration included." },
+  { q: "Does GymOS support QR code and barcode attendance?", a: "Yes. GymOS includes a camera-based QR code scanner (html5-qrcode), hardware barcode scanner support, and a standalone kiosk mode for the reception desk. Members can check in and check out with duration tracking, and duplicate scans are blocked with audio feedback." },
+  { q: "Can I manage Zumba, Yoga and other classes separately from gym memberships?", a: "Yes. GymOS has a dedicated class management module supporting Zumba, Yoga, Dance, HIIT, Kids Dance and Gym. Each class type has its own trainer assignment, multiple time slots and an enrolled members list." },
+  { q: "Does GymOS support role-based access for staff?", a: "Yes. You can create individual login credentials for each staff member via Firebase Auth. Admins get full access, staff get check-in only access. Roles include Trainer, Staff, Manager and Receptionist — each with their own QR code." },
+  { q: "Can I track equipment maintenance and supplements in GymOS?", a: "Yes. GymOS includes an equipment management module with service date tracking (Overdue / Due Soon / Good status) and a supplements inventory module with stock quantity, price and stock level alerts (Out of Stock / Low / In Stock)." },
+  { q: "Is there a free trial for GymOS?", a: "We offer a free 15-minute personalised demo where our team walks you through every module live. We also migrate your existing member data for free and go live within 48 hours." },
 ];
 
 const cities = [
@@ -262,9 +295,7 @@ function DemoForm({ compact = false }) {
       {error && <p className="text-red-400 text-xs flex items-center gap-1.5 font-mono"><AlertCircle size={12} /> {error}</p>}
       <button type="submit" disabled={submitting}
         className="group w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-md bg-neon-green text-dark-950 font-heading font-medium text-sm hover:bg-neon-mint transition-all duration-300 disabled:opacity-50">
-        {submitting
-          ? <><Loader2 size={15} className="animate-spin" /> Submitting…</>
-          : <>GET FREE DEMO <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" /></>}
+        {submitting ? <><Loader2 size={15} className="animate-spin" /> Submitting…</> : <>GET FREE DEMO <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" /></>}
       </button>
       <p className="text-center text-gray-600 text-[11px] font-mono">No credit card required · Cancel anytime</p>
     </form>
@@ -356,24 +387,21 @@ export default function GymLanding() {
               India's #1 Gym Management Software
             </motion.p>
             <motion.h1 variants={fadeUp} className="font-heading text-5xl sm:text-6xl lg:text-[4.2rem] font-medium tracking-tight leading-[1.08]">
-              <span className="text-white">Gym Software</span>
+              <span className="text-white">// Gym ERP</span>
               <br />
-              <span className="gradient-text">Trusted by 500+</span>
-              <br />
-              <span className="text-white">Gyms Across India</span>
+              <span className="gradient-text">built for India</span>
             </motion.h1>
             <motion.p variants={fadeUp} className="text-gray-400 text-lg leading-relaxed max-w-lg">
-              All-in-one gym management system — WhatsApp automation, biometric access,
-              GST billing, lead management and analytics. Your gym runs itself.
+              Complete gym management system — members, billing, QR check-in, class scheduling, staff access, equipment, inventory and analytics. Everything your gym needs, nothing it doesn't.
             </motion.p>
             <motion.div variants={fadeUp} className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-400 max-w-md">
               {[
-                "WhatsApp AI bot & bulk messaging",
-                "Biometric + QR + RFID access",
-                "GST billing & UPI payments",
-                "Lead management & CRM",
-                "Multi-branch dashboard",
-                "Staff management & payroll",
+                "QR & barcode check-in kiosk",
+                "Auto dues & SMS reminders",
+                "Multi-mode billing (UPI/Cash/Card)",
+                "Zumba / Yoga / HIIT class scheduling",
+                "Role-based staff access",
+                "Revenue vs Expenses analytics",
               ].map((t) => (
                 <span key={t} className="flex items-center gap-2">
                   <CheckCircle2 size={13} className="text-neon-green shrink-0" /> {t}
@@ -434,25 +462,25 @@ export default function GymLanding() {
         </div>
       </Section>
 
-      {/* ─── FEATURES ─── */}
+      {/* ─── MODULES ─── */}
       <Section className="py-28 relative">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-electric-blue/[0.03] rounded-full blur-[120px] pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
             <motion.div variants={fadeUp}>
-              <p className="text-sm font-mono uppercase tracking-widest text-neon-green/80 mb-4">All-In-One Platform</p>
+              <p className="text-sm font-mono uppercase tracking-widest text-neon-green/80 mb-4">What's inside</p>
               <h2 className="font-heading text-4xl sm:text-5xl font-light text-white leading-tight">
-                Twelve essentials,
+                Ten modules.
                 <br />
-                <span className="gradient-text-alt">one software</span>
+                <span className="gradient-text-alt">One complete ERP.</span>
               </h2>
             </motion.div>
             <motion.p variants={fadeUp} custom={1} className="text-gray-400 text-lg leading-relaxed max-w-md">
-              From member check-in to billing, WhatsApp reminders to payroll — GymOS handles it all so you don't have to.
+              Every feature built from real feedback from Indian gym owners — nothing generic, nothing missing.
             </motion.p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {features.map(({ icon: Icon, tag, title, desc, bullets, accent }, i) => (
+            {modules.map(({ icon: Icon, tag, title, desc, bullets, accent }, i) => (
               <motion.div key={title} variants={fadeUp} custom={i % 3}>
                 <div className="group rounded-lg card-premium glass-hover p-7 h-full transition-all duration-500">
                   <div className="flex items-start justify-between mb-5">
@@ -461,10 +489,10 @@ export default function GymLanding() {
                   </div>
                   <h3 className="font-heading text-lg font-medium text-white mb-2">{title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-4">{desc}</p>
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {bullets.map((b) => (
-                      <li key={b} className="flex items-center gap-2 text-gray-500 text-xs font-sans">
-                        <span className={`w-1 h-1 rounded-full shrink-0 bg-current ${accent}`} /> {b}
+                      <li key={b} className="flex items-start gap-2 text-gray-500 text-xs font-sans leading-snug">
+                        <span className={`w-1 h-1 rounded-full shrink-0 mt-1.5 bg-current ${accent}`} /> {b}
                       </li>
                     ))}
                   </ul>
@@ -511,7 +539,6 @@ export default function GymLanding() {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            {/* Plan cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
               {plans.map((plan, i) => (
                 <motion.div key={plan.name} variants={fadeUp} custom={i}
@@ -547,13 +574,12 @@ export default function GymLanding() {
               ))}
             </div>
 
-            {/* Shared features list */}
             <motion.div variants={fadeUp} custom={1} className="rounded-lg card-premium p-8">
               <p className="text-xs font-mono uppercase tracking-widest text-neon-green/70 mb-5">Everything included in both plans</p>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {allFeatures.map((f) => (
                   <li key={f} className="flex items-center gap-3 text-gray-400 text-sm font-sans">
-                    <CheckCircle2 size={14} className="text-neon-green shrink-0" /> {f}
+                    <CheckCircle2 size={13} className="text-neon-green shrink-0" /> {f}
                   </li>
                 ))}
               </ul>
@@ -609,13 +635,13 @@ export default function GymLanding() {
               <span className="gradient-text-warm">your gym</span>
             </h2>
             <p className="text-gray-400 text-lg leading-relaxed mb-8">
-              Our team gives you a personalised 15-minute live walkthrough of GymOS — no obligation, no card required.
+              Our team gives you a personalised 15-minute live walkthrough of every GymOS module — no obligation, no card required.
             </p>
             <ul className="space-y-4 mb-8">
               {[
-                "Complete live walkthrough of all features",
+                "Live walkthrough of all 10 modules",
                 "We migrate your existing member data free",
-                "Technical consultation for your setup",
+                "Set up staff logins & membership plans for you",
                 "Go live within 48 hours",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-3 text-gray-400 text-sm font-sans">
@@ -700,14 +726,14 @@ export default function GymLanding() {
               <span className="text-white">GymOS</span>
             </p>
             <p className="text-gray-600 text-sm font-sans leading-relaxed mb-4">
-              India's best gym management software. Built for gyms, yoga studios, CrossFit boxes and fitness centres across India.
+              Complete gym management ERP for Indian gyms, yoga studios, CrossFit boxes and fitness centres.
             </p>
             <p className="text-gray-700 text-xs font-mono">by Devloft Technologies, Bangalore</p>
           </div>
           <div>
-            <p className="font-heading font-medium text-white mb-4 text-sm">Features</p>
+            <p className="font-heading font-medium text-white mb-4 text-sm">Modules</p>
             <ul className="space-y-2 text-sm text-gray-600 font-sans">
-              {["Member Management", "Gym Billing & GST", "Biometric Attendance", "WhatsApp Automation", "Lead Management", "Staff & Payroll"].map((s) => (
+              {["Member Management", "Payments & Billing", "QR Attendance", "Class Scheduling", "Staff Management", "Analytics Dashboard"].map((s) => (
                 <li key={s} className="hover:text-gray-400 transition-colors duration-200 cursor-default">{s}</li>
               ))}
             </ul>
@@ -731,7 +757,7 @@ export default function GymLanding() {
         </div>
         <div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-700 text-xs font-mono">
           <p>© 2026 Devloft Technologies · GymOS Gym Management Software India</p>
-          <p>Gym Software · Fitness Centre Software · Yoga Studio Management</p>
+          <p>Gym ERP · Member Management · QR Attendance · Class Scheduling</p>
         </div>
       </footer>
     </div>
