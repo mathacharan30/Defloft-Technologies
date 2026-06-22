@@ -137,21 +137,31 @@ const steps = [
   { num: "03", title: "Your Gym Runs Itself", desc: "Renewals, reminders, billing and attendance run on autopilot. You focus on growth." },
 ];
 
+const allFeatures = [
+  "Unlimited members",
+  "Member & billing management",
+  "GST invoicing & UPI payments",
+  "Biometric + QR + app check-in",
+  "WhatsApp AI bot & bulk messaging",
+  "Automated renewal & due reminders",
+  "Lead management & CRM",
+  "Trainer & class scheduling",
+  "Diet & workout plans",
+  "Staff management & payroll",
+  "Advanced analytics & reports",
+  "Multi-branch management",
+  "Branded member mobile app",
+  "Priority support",
+];
+
 const plans = [
   {
-    name: "Starter", price: "₹999", period: "/month", yearly: "₹9,999/year",
-    tagline: "For single-location gyms getting started", popular: false,
-    features: ["Up to 500 members", "Member & billing management", "QR-code attendance", "WhatsApp renewal reminders", "GST invoicing", "Basic reports", "Email support"],
+    name: "Monthly", price: "₹799", period: "/month", saving: null,
+    tagline: "Pay month to month, cancel anytime", popular: false,
   },
   {
-    name: "Pro", price: "₹1,999", period: "/month", yearly: "₹19,999/year",
-    tagline: "For growing gyms that want full automation", popular: true,
-    features: ["Unlimited members", "Biometric + QR + app check-in", "WhatsApp AI bot & bulk messaging", "Lead management & CRM", "Trainer & class scheduling", "Diet & workout plans", "Staff management & payroll", "Advanced analytics", "Priority support"],
-  },
-  {
-    name: "Enterprise", price: "Custom", period: "", yearly: "",
-    tagline: "For multi-branch chains & franchises", popular: false,
-    features: ["Everything in Pro", "Multi-branch management", "Branded member mobile app", "Turnstile & RFID integration", "Custom integrations & API", "Dedicated account manager", "On-site onboarding"],
+    name: "Annual", price: "₹8,999", period: "/year", saving: "Save ₹589 vs monthly",
+    tagline: "Best value — one payment for the full year", popular: true,
   },
 ];
 
@@ -172,7 +182,7 @@ const testimonials = [
 
 const faqs = [
   { q: "What is GymOS gym management software?", a: "GymOS is an all-in-one gym management software built for Indian gyms and fitness studios. It covers member management, billing, GST invoices, biometric attendance, WhatsApp automation, lead management, trainer scheduling, diet plans, staff payroll and analytics — all from one dashboard." },
-  { q: "How much does gym management software cost in India?", a: "GymOS starts at ₹999/month (₹9,999/year) for the Starter plan and ₹1,999/month for the Pro plan with unlimited members and full automation. Enterprise pricing is available for multi-branch chains. All plans include free setup and data migration." },
+  { q: "How much does gym management software cost in India?", a: "GymOS is priced at ₹799/month or ₹8,999/year (saving ₹589 vs monthly). Both plans include all features — unlimited members, biometric attendance, WhatsApp automation, GST billing, lead management, staff payroll and more. No setup fees and free data migration included." },
   { q: "Does GymOS support WhatsApp reminders for renewals?", a: "Yes. GymOS automatically sends WhatsApp and SMS reminders to members before their membership expires, for pending dues, birthdays and anniversaries — with a 24/7 AI bot — without any manual work." },
   { q: "Can it manage multiple gym branches?", a: "Yes. GymOS Enterprise supports multi-branch management from one login with branch-wise revenue reports, attendance data and a centralised member database." },
   { q: "Does GymOS support biometric attendance for gyms?", a: "Yes. GymOS integrates with fingerprint devices, face recognition, RFID cards and QR code scanners. Expired or suspended members are automatically blocked at entry." },
@@ -491,7 +501,7 @@ export default function GymLanding() {
       {/* ─── PRICING ─── */}
       <Section className="py-28 relative">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-neon-green/[0.03] rounded-full blur-[100px] pointer-events-none" />
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div variants={fadeUp} className="text-center mb-16 max-w-2xl mx-auto">
             <p className="text-sm font-mono uppercase tracking-widest text-electric-blue mb-4">Transparent Pricing</p>
             <h2 className="font-heading text-4xl sm:text-5xl font-light text-white mb-4">
@@ -499,42 +509,55 @@ export default function GymLanding() {
             </h2>
             <p className="text-gray-500 text-sm font-mono">No setup fees · No hidden charges · Free data migration · Cancel anytime</p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
-            {plans.map((plan, i) => (
-              <motion.div key={plan.name} variants={fadeUp} custom={i}
-                className={`relative rounded-lg flex flex-col gap-6 p-8 transition-all duration-500 ${plan.popular
-                  ? "border border-neon-green/30 bg-white/[0.04] backdrop-blur-xl shadow-[0_0_60px_rgba(0,255,136,0.06)]"
-                  : "card-premium"}`}>
-                {plan.popular && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-neon-green text-dark-950 text-[10px] font-heading font-medium uppercase tracking-widest whitespace-nowrap">
-                    <Zap size={10} fill="currentColor" /> Most Popular
-                  </span>
-                )}
-                <div>
-                  <h3 className="font-heading text-xl font-medium text-white mb-1">{plan.name}</h3>
-                  <p className="text-gray-600 text-xs font-mono mb-5 min-h-[2rem]">{plan.tagline}</p>
-                  <p className="font-heading text-4xl font-light text-white leading-none">
-                    {plan.price}
-                    <span className="text-sm text-gray-500 font-mono ml-1">{plan.period}</span>
-                  </p>
-                  {plan.yearly && <p className="text-neon-green/70 text-xs font-mono mt-1">Save 17% · {plan.yearly}</p>}
-                </div>
-                <ul className="space-y-2.5 flex-1">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-gray-400 text-sm font-sans">
-                      <CheckCircle2 size={14} className="text-neon-green shrink-0 mt-0.5" /> {f}
-                    </li>
-                  ))}
-                </ul>
-                <button onClick={scrollToForm}
-                  className={`group inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-md font-heading font-medium text-sm transition-all duration-300 ${plan.popular
-                    ? "bg-neon-green text-dark-950 hover:bg-neon-mint"
-                    : "bg-white/[0.04] border border-white/[0.08] text-white hover:bg-white/[0.08] hover:border-neon-green/20"}`}>
-                  {plan.price === "Custom" ? "Contact Sales" : "Start Free Demo"}
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </button>
-              </motion.div>
-            ))}
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            {/* Plan cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+              {plans.map((plan, i) => (
+                <motion.div key={plan.name} variants={fadeUp} custom={i}
+                  className={`relative rounded-lg p-8 transition-all duration-500 ${plan.popular
+                    ? "border border-neon-green/30 bg-white/[0.04] backdrop-blur-xl shadow-[0_0_60px_rgba(0,255,136,0.06)]"
+                    : "card-premium"}`}>
+                  {plan.popular && (
+                    <span className="absolute -top-3.5 left-6 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-neon-green text-dark-950 text-[10px] font-heading font-medium uppercase tracking-widest whitespace-nowrap">
+                      <Zap size={10} fill="currentColor" /> Best Value
+                    </span>
+                  )}
+                  <div className="flex items-start justify-between gap-4 mb-5">
+                    <div>
+                      <h3 className="font-heading text-xl font-medium text-white mb-1">{plan.name}</h3>
+                      <p className="text-gray-600 text-xs font-mono">{plan.tagline}</p>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <p className="font-heading text-3xl font-light text-white leading-none">
+                        {plan.price}
+                        <span className="text-sm text-gray-500 font-mono ml-1">{plan.period}</span>
+                      </p>
+                      {plan.saving && <p className="text-neon-green/70 text-xs font-mono mt-1">{plan.saving}</p>}
+                    </div>
+                  </div>
+                  <button onClick={scrollToForm}
+                    className={`group w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-md font-heading font-medium text-sm transition-all duration-300 ${plan.popular
+                      ? "bg-neon-green text-dark-950 hover:bg-neon-mint"
+                      : "bg-white/[0.04] border border-white/[0.08] text-white hover:bg-white/[0.08] hover:border-neon-green/20"}`}>
+                    Start Free Demo
+                    <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Shared features list */}
+            <motion.div variants={fadeUp} custom={1} className="rounded-lg card-premium p-8">
+              <p className="text-xs font-mono uppercase tracking-widest text-neon-green/70 mb-5">Everything included in both plans</p>
+              <ul className="space-y-3">
+                {allFeatures.map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-gray-400 text-sm font-sans">
+                    <CheckCircle2 size={14} className="text-neon-green shrink-0" /> {f}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </div>
         </div>
       </Section>
