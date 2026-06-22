@@ -4,13 +4,12 @@ import { motion, useInView } from "framer-motion";
 import {
   ArrowRight, Phone, MessageCircle, CheckCircle2, AlertCircle,
   Users, CreditCard, Fingerprint, BellRing, CalendarClock, BarChart3,
-  Dumbbell, Building2, Smartphone, ShieldCheck, Zap, TrendingUp,
-  Send, Loader2, CheckCheck, ChevronDown, Star, IndianRupee,
-  UserPlus, Briefcase, Megaphone, Activity, MapPin,
+  Dumbbell, Building2, Smartphone, Zap,
+  Loader2, CheckCheck, ChevronDown, Star,
+  UserPlus, Briefcase, Megaphone, MapPin, ArrowUpRight,
 } from "lucide-react";
 import { addSubmission } from "../data/submissions";
 
-const PRODUCT = "GymOS";
 const WHATSAPP_NUM = "918147814232";
 const PHONE_NUM = "+91 8147814232";
 
@@ -18,10 +17,10 @@ const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: (i = 0) => ({
     opacity: 1, y: 0,
-    transition: { duration: 0.55, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
   }),
 };
-const stagger = { visible: { transition: { staggerChildren: 0.07 } } };
+const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 function Section({ children, className = "" }) {
   const ref = useRef(null);
@@ -39,79 +38,103 @@ const clientLogos = [
 ];
 
 const stats = [
-  { value: "500+", label: "Gyms Across India", sub: "and growing" },
-  { value: "80%", label: "Less Manual Work", sub: "on average" },
-  { value: "72%", label: "Fewer Pending Dues", sub: "with auto-reminders" },
-  { value: "99%", label: "Customer Retention", sub: "year on year" },
+  { value: "500+", label: "Gyms Across India", color: "text-neon-green" },
+  { value: "80%", label: "Less Manual Work", color: "text-electric-cyan" },
+  { value: "72%", label: "Fewer Pending Dues", color: "text-electric-blue" },
+  { value: "99%", label: "Customer Retention", color: "text-neon-green" },
 ];
 
 const features = [
   {
-    icon: MessageCircle, title: "WhatsApp Automation & AI Bot",
-    desc: "Auto-reminders for renewals, dues, birthdays and class updates via WhatsApp. 24/7 AI bot handles member queries — zero manual follow-up.",
+    icon: MessageCircle, tag: "AUTOMATION",
+    title: "WhatsApp Automation & AI Bot",
+    desc: "Auto-reminders for renewals, dues, birthdays and class updates. 24/7 AI bot handles member queries — zero manual follow-up.",
     bullets: ["Bulk WhatsApp messaging", "Auto renewal & due alerts", "Birthday & anniversary wishes"],
+    accent: "text-neon-green",
   },
   {
-    icon: Fingerprint, title: "Biometric & Turnstile Access",
+    icon: Fingerprint, tag: "ACCESS CONTROL",
+    title: "Biometric & Turnstile Access",
     desc: "Fingerprint, face recognition, RFID and QR check-in. Expired members are blocked automatically at entry.",
     bullets: ["Fingerprint / face / RFID", "Auto-block expired members", "Real-time attendance logs"],
+    accent: "text-electric-cyan",
   },
   {
-    icon: CreditCard, title: "Gym Billing & GST Invoicing",
+    icon: CreditCard, tag: "BILLING",
+    title: "Gym Billing & GST Invoicing",
     desc: "Auto-generate GST invoices, accept UPI and card payments. WhatsApp reminders cut pending dues by 72%.",
     bullets: ["UPI / card / cash tracking", "Auto-GST invoices", "Daily collection reports"],
+    accent: "text-electric-blue",
   },
   {
-    icon: UserPlus, title: "Lead Management & CRM",
+    icon: UserPlus, tag: "CRM",
+    title: "Lead Management & CRM",
     desc: "Capture leads from Instagram, Facebook and walk-ins. Automated follow-ups track every prospect from enquiry to enrollment.",
     bullets: ["Social media lead capture", "Automated follow-up messages", "Sales funnel insights"],
+    accent: "text-neon-green",
   },
   {
-    icon: Users, title: "Member Management Software",
-    desc: "Complete member profiles, photo, documents, membership history and plans — all in one searchable database.",
+    icon: Users, tag: "MEMBERS",
+    title: "Member Management Software",
+    desc: "Complete member profiles, photo, documents, membership history and plans in one searchable database.",
     bullets: ["Member photo & documents", "Plan & renewal history", "Online member portal"],
+    accent: "text-electric-cyan",
   },
   {
-    icon: CalendarClock, title: "Class & Trainer Scheduling",
-    desc: "Assign trainers, schedule group classes, manage PT sessions and let members book online — no calls, no confusion.",
+    icon: CalendarClock, tag: "SCHEDULING",
+    title: "Class & Trainer Scheduling",
+    desc: "Assign trainers, schedule group classes, manage PT sessions and let members book online.",
     bullets: ["Group class booking", "PT session scheduling", "Online self-booking portal"],
+    accent: "text-electric-blue",
   },
   {
-    icon: Dumbbell, title: "Diet & Workout Plans",
+    icon: Dumbbell, tag: "WELLNESS",
+    title: "Diet & Workout Plans",
     desc: "Build and share personalised diet and workout programs with each member digitally via the app.",
     bullets: ["2,000+ workout GIFs library", "Custom diet programs", "Member progress tracking"],
+    accent: "text-neon-green",
   },
   {
-    icon: Briefcase, title: "Staff Management & Payroll",
+    icon: Briefcase, tag: "OPERATIONS",
+    title: "Staff Management & Payroll",
     desc: "Role-based staff access, attendance tracking, commissions and payroll processing — all in one place.",
     bullets: ["Role-based access control", "Staff attendance & leaves", "Payroll & commissions"],
+    accent: "text-electric-cyan",
   },
   {
-    icon: BarChart3, title: "Reports & Analytics",
-    desc: "Live dashboards for revenue, attendance, membership trends and retention — everything you need to grow.",
+    icon: BarChart3, tag: "ANALYTICS",
+    title: "Reports & Analytics",
+    desc: "Live dashboards for revenue, attendance, membership trends and retention to sharpen every decision.",
     bullets: ["Revenue & collection reports", "Attendance heatmaps", "Membership plan analytics"],
+    accent: "text-electric-blue",
   },
   {
-    icon: Building2, title: "Multi-Branch Management",
-    desc: "Manage all your gym branches from one login with branch-wise reports, member data and staff control.",
+    icon: Building2, tag: "ENTERPRISE",
+    title: "Multi-Branch Management",
+    desc: "Manage all your gym locations from one login with branch-wise reports, member data and staff control.",
     bullets: ["Single login all branches", "Branch-wise P&L reports", "Centralised member database"],
+    accent: "text-neon-green",
   },
   {
-    icon: Smartphone, title: "Branded Member App",
-    desc: "Your own branded gym app — members view plans, pay online, book classes and track workouts.",
+    icon: Smartphone, tag: "MOBILE",
+    title: "Branded Member App",
+    desc: "Your own branded gym app on iOS & Android — members view plans, pay online, book classes and track workouts.",
     bullets: ["iOS & Android app", "Online payments in-app", "Class & PT booking"],
+    accent: "text-electric-cyan",
   },
   {
-    icon: Megaphone, title: "Marketing & Promotions",
+    icon: Megaphone, tag: "MARKETING",
+    title: "Marketing & Promotions",
     desc: "Bulk WhatsApp & SMS campaigns, referral programs and special offer notifications to drive renewals.",
     bullets: ["Bulk WhatsApp campaigns", "Referral tracking", "Festival & offer messages"],
+    accent: "text-electric-blue",
   },
 ];
 
 const steps = [
-  { n: "01", title: "Book a Free Demo", desc: "Our team walks you through GymOS live in 15 minutes — tailored to your gym's needs." },
-  { n: "02", title: "We Set Up Everything", desc: "We migrate your existing member data and configure your plans. Go live in 48 hours." },
-  { n: "03", title: "Your Gym Runs Itself", desc: "Renewals, reminders, billing and attendance run on autopilot. You focus on growth." },
+  { num: "01", title: "Book a Free Demo", desc: "Our team walks you through GymOS live in 15 minutes — tailored to your gym's needs." },
+  { num: "02", title: "We Set Up Everything", desc: "We migrate your existing member data and configure your plans. Go live in 48 hours." },
+  { num: "03", title: "Your Gym Runs Itself", desc: "Renewals, reminders, billing and attendance run on autopilot. You focus on growth." },
 ];
 
 const plans = [
@@ -134,18 +157,15 @@ const plans = [
 
 const testimonials = [
   {
-    name: "Rajesh Kumar", role: "Owner, PowerFit Gym", city: "Bangalore",
-    members: "320 members", rating: 5,
-    text: "I used to spend 2 hours every morning on Excel and WhatsApp follow-ups. With GymOS, renewals happen automatically and my pending dues dropped by over 60% in the first month.",
+    name: "Rajesh Kumar", role: "Owner, PowerFit Gym", city: "Bangalore", members: "320 members", rating: 5,
+    text: "I used to spend 2 hours every morning on Excel and WhatsApp follow-ups. With GymOS, renewals happen automatically and my pending dues dropped by 60% in the first month.",
   },
   {
-    name: "Priya Sharma", role: "Owner, FitZone Studio", city: "Hyderabad",
-    members: "480 members", rating: 5,
+    name: "Priya Sharma", role: "Owner, FitZone Studio", city: "Hyderabad", members: "480 members", rating: 5,
     text: "The biometric integration and WhatsApp automation alone were worth it. Our team was set up in 2 days and the support from Devloft was outstanding.",
   },
   {
-    name: "Arun Menon", role: "Owner, IronEdge Gym", city: "Chennai",
-    members: "3 branches", rating: 5,
+    name: "Arun Menon", role: "Owner, IronEdge Gym", city: "Chennai", members: "3 branches", rating: 5,
     text: "Managing 3 branches used to be a nightmare. Now one dashboard shows everything — revenue, attendance, member counts — for all locations in real time.",
   },
 ];
@@ -167,7 +187,7 @@ const cities = [
   "Nagpur", "Vizag", "Bhopal",
 ];
 
-function DemoForm({ onSuccess }) {
+function DemoForm({ compact = false }) {
   const [form, setForm] = useState({ name: "", gymName: "", phone: "", city: "", members: "" });
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -183,7 +203,6 @@ function DemoForm({ onSuccess }) {
     try {
       await addSubmission({ fullName: form.name, company: form.gymName, phone: form.phone, city: form.city, message: `Members: ${form.members}`, source: "gym-erp-landing" });
       setSuccess(true);
-      if (onSuccess) onSuccess();
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -194,14 +213,16 @@ function DemoForm({ onSuccess }) {
   if (success) {
     return (
       <div className="flex flex-col items-center justify-center gap-4 py-10 text-center">
-        <div className="w-14 h-14 rounded-full bg-[#ff5e1a]/15 flex items-center justify-center">
-          <CheckCheck size={28} className="text-[#ff7a18]" />
+        <div className="w-12 h-12 rounded-full bg-neon-green/10 border border-neon-green/20 flex items-center justify-center">
+          <CheckCheck size={22} className="text-neon-green" />
         </div>
-        <h3 className="font-heading text-xl font-bold text-white">We'll call you shortly!</h3>
-        <p className="text-gray-400 text-sm">Our team will reach out to schedule your free demo.</p>
+        <h3 className="font-heading text-xl font-medium text-white">We'll call you shortly!</h3>
+        <p className="text-gray-500 text-sm">Our team will reach out to schedule your free demo.</p>
       </div>
     );
   }
+
+  const inputCls = "w-full px-4 py-3 rounded-md bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-600 text-sm font-sans focus:outline-none focus:border-neon-green/30 focus:bg-white/[0.05] transition-all duration-200";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
@@ -209,18 +230,17 @@ function DemoForm({ onSuccess }) {
         { label: "Your Name *", name: "name", type: "text", placeholder: "Your Name" },
         { label: "Phone Number *", name: "phone", type: "tel", placeholder: "+91 98765 43210" },
         { label: "Gym / Studio Name", name: "gymName", type: "text", placeholder: "Your Gym Name" },
-        { label: "City", name: "city", type: "text", placeholder: "e.g. Bangalore, Chennai" },
+        ...(!compact ? [{ label: "City", name: "city", type: "text", placeholder: "e.g. Bangalore, Chennai" }] : []),
       ].map(({ label, name, type, placeholder }) => (
         <div key={name}>
-          <label className="block text-xs font-medium text-gray-400 mb-1">{label}</label>
-          <input type={type} name={name} value={form[name]} onChange={handleChange} placeholder={placeholder}
-            className="w-full px-3.5 py-2.5 rounded-lg bg-white/[0.05] border border-white/[0.10] text-white placeholder-gray-600 text-sm focus:outline-none focus:border-[#ff5e1a]/60 focus:ring-1 focus:ring-[#ff5e1a]/30 transition-all" />
+          <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">{label}</label>
+          <input type={type} name={name} value={form[name]} onChange={handleChange} placeholder={placeholder} className={inputCls} />
         </div>
       ))}
       <div>
-        <label className="block text-xs font-medium text-gray-400 mb-1">Number of Members</label>
+        <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">Number of Members</label>
         <select name="members" value={form.members} onChange={handleChange}
-          className="w-full px-3.5 py-2.5 rounded-lg bg-[#1a1a26] border border-white/[0.10] text-gray-300 text-sm focus:outline-none focus:border-[#ff5e1a]/60 transition-all">
+          className="w-full px-4 py-3 rounded-md bg-dark-800 border border-white/[0.08] text-gray-400 text-sm font-sans focus:outline-none focus:border-neon-green/30 transition-all duration-200">
           <option value="">Select range</option>
           <option>Under 100</option>
           <option>100 – 300</option>
@@ -229,12 +249,14 @@ function DemoForm({ onSuccess }) {
           <option>1000+</option>
         </select>
       </div>
-      {error && <p className="text-red-400 text-xs flex items-center gap-1.5"><AlertCircle size={13} /> {error}</p>}
+      {error && <p className="text-red-400 text-xs flex items-center gap-1.5 font-mono"><AlertCircle size={12} /> {error}</p>}
       <button type="submit" disabled={submitting}
-        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#ff5e1a] text-white font-bold text-sm hover:bg-[#ff7a18] disabled:opacity-60 transition-colors shadow-lg shadow-[#ff5e1a]/20">
-        {submitting ? <><Loader2 size={15} className="animate-spin" /> Submitting…</> : <>GET FREE DEMO <ArrowRight size={15} /></>}
+        className="group w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-md bg-neon-green text-dark-950 font-heading font-medium text-sm hover:bg-neon-mint transition-all duration-300 disabled:opacity-50">
+        {submitting
+          ? <><Loader2 size={15} className="animate-spin" /> Submitting…</>
+          : <>GET FREE DEMO <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" /></>}
       </button>
-      <p className="text-center text-gray-600 text-xs">No credit card required · Cancel anytime</p>
+      <p className="text-center text-gray-600 text-[11px] font-mono">No credit card required · Cancel anytime</p>
     </form>
   );
 }
@@ -242,17 +264,17 @@ function DemoForm({ onSuccess }) {
 function FAQ() {
   const [open, setOpen] = useState(null);
   return (
-    <div className="space-y-2.5">
+    <div className="space-y-2">
       {faqs.map((f, i) => (
-        <div key={i} className="rounded-xl border border-white/[0.08] bg-[#12121a]/60 overflow-hidden">
+        <div key={i} className="rounded-lg card-premium overflow-hidden transition-all duration-300">
           <button onClick={() => setOpen(open === i ? null : i)}
-            className="w-full flex items-center justify-between px-5 py-4 text-left gap-4">
-            <span className="font-semibold text-white text-sm leading-snug">{f.q}</span>
-            <ChevronDown size={16} className={`text-[#ff7a18] shrink-0 transition-transform duration-300 ${open === i ? "rotate-180" : ""}`} />
+            className="w-full flex items-center justify-between px-6 py-5 text-left gap-4">
+            <span className="font-heading font-medium text-white text-sm sm:text-base leading-snug">{f.q}</span>
+            <ChevronDown size={16} className={`text-neon-green shrink-0 transition-transform duration-300 ${open === i ? "rotate-180" : ""}`} />
           </button>
           {open === i && (
-            <div className="px-5 pb-4">
-              <p className="text-gray-400 text-sm leading-relaxed">{f.a}</p>
+            <div className="px-6 pb-5">
+              <p className="text-gray-400 text-sm leading-relaxed font-sans">{f.a}</p>
             </div>
           )}
         </div>
@@ -263,21 +285,21 @@ function FAQ() {
 
 function StickyBar({ onDemo }) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden flex border-t border-white/[0.10] bg-[#0a0a0f]/95 backdrop-blur-md">
-      <a href={`tel:+918147814232`}
-        className="flex-1 flex flex-col items-center justify-center gap-1 py-3 text-white hover:bg-white/5 transition-colors border-r border-white/[0.08]">
-        <Phone size={18} className="text-gray-300" />
-        <span className="text-[11px] font-semibold text-gray-300">Call Us</span>
+    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden flex border-t border-white/[0.08] bg-dark-950/95 backdrop-blur-md">
+      <a href="tel:+918147814232"
+        className="flex-1 flex flex-col items-center justify-center gap-1 py-3 hover:bg-white/[0.04] transition-colors border-r border-white/[0.06]">
+        <Phone size={17} className="text-gray-400" />
+        <span className="text-[10px] font-mono uppercase tracking-wider text-gray-500">Call Us</span>
       </a>
       <a href={`https://wa.me/918147814232`} target="_blank" rel="noreferrer"
-        className="flex-1 flex flex-col items-center justify-center gap-1 py-3 bg-[#25D366] hover:bg-[#20bd5a] transition-colors border-r border-white/[0.08]">
-        <MessageCircle size={18} className="text-white" />
-        <span className="text-[11px] font-bold text-white">WhatsApp</span>
+        className="flex-1 flex flex-col items-center justify-center gap-1 py-3 bg-[#25D366] hover:bg-[#20bd5a] transition-colors border-r border-white/[0.06]">
+        <MessageCircle size={17} className="text-white" />
+        <span className="text-[10px] font-mono uppercase tracking-wider text-white font-bold">WhatsApp</span>
       </a>
       <button onClick={onDemo}
-        className="flex-1 flex flex-col items-center justify-center gap-1 py-3 bg-[#ff5e1a] hover:bg-[#ff7a18] transition-colors">
-        <ArrowRight size={18} className="text-white" />
-        <span className="text-[11px] font-bold text-white">Demo</span>
+        className="flex-1 flex flex-col items-center justify-center gap-1 py-3 bg-neon-green hover:bg-neon-mint transition-colors">
+        <ArrowRight size={17} className="text-dark-950" />
+        <span className="text-[10px] font-mono uppercase tracking-wider text-dark-950 font-bold">Demo</span>
       </button>
     </div>
   );
@@ -288,54 +310,53 @@ export default function GymLanding() {
   const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white font-sans overflow-x-hidden pb-[60px] md:pb-0">
+    <div className="overflow-hidden relative pb-[60px] md:pb-0 bg-dark-950">
       <StickyBar onDemo={scrollToForm} />
 
-      {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 md:px-10 py-3.5 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-white/[0.07]">
-        <span className="font-heading text-lg font-bold flex items-center gap-2">
-          <Dumbbell size={20} className="text-[#ff5e1a]" />
-          <span className="text-white">{PRODUCT}</span>
-          <span className="text-gray-600 text-xs font-normal hidden sm:inline">by Devloft</span>
+      {/* ─── NAV ─── */}
+      <nav className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 bg-dark-950/90 backdrop-blur-md border-b border-white/[0.06]">
+        <span className="font-heading text-lg font-medium flex items-center gap-2">
+          <Dumbbell size={19} className="text-neon-green" />
+          <span className="text-white">GymOS</span>
+          <span className="text-gray-600 text-xs font-mono hidden sm:inline">by Devloft</span>
         </span>
-        <div className="flex items-center gap-3">
-          <a href={`tel:${PHONE_NUM.replace(/\s/g, "")}`} className="hidden md:flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors">
-            <Phone size={13} className="text-[#ff7a18]" /> {PHONE_NUM}
+        <div className="flex items-center gap-4">
+          <a href={`tel:${PHONE_NUM}`} className="hidden md:flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors duration-200">
+            <Phone size={13} className="text-neon-green" /> {PHONE_NUM}
           </a>
           <a href={`https://wa.me/${WHATSAPP_NUM}`} target="_blank" rel="noreferrer"
-            className="hidden sm:flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors">
-            <MessageCircle size={13} className="text-[#ff7a18]" /> WhatsApp
+            className="hidden sm:flex items-center gap-1.5 text-sm text-gray-400 hover:text-white transition-colors duration-200">
+            <MessageCircle size={13} className="text-electric-cyan" /> WhatsApp
           </a>
           <button onClick={scrollToForm}
-            className="flex items-center gap-1.5 text-sm bg-[#ff5e1a] text-white font-bold px-4 py-2 rounded-full hover:bg-[#ff7a18] transition-colors">
-            Free Demo
+            className="group inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-gradient-to-bl from-neon-green via-blue-50 to-blue-300 text-dark-950 font-heading font-medium text-sm hover:opacity-90 transition-all duration-300">
+            Free Demo <ArrowUpRight size={14} className="opacity-60 group-hover:opacity-100 transition-opacity" />
           </button>
         </div>
       </nav>
 
-      {/* HERO */}
-      <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(255,94,26,0.7) 1px, transparent 1px), linear-gradient(90deg, rgba(255,94,26,0.7) 1px, transparent 1px)", backgroundSize: "50px 50px" }} />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#ff5e1a]/8 blur-[150px] rounded-full pointer-events-none" />
-        <div className="relative max-w-7xl mx-auto px-5 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      {/* ─── HERO ─── */}
+      <section className="relative min-h-screen flex items-center pt-20 pb-12 bg-dark-950">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-neon-green/[0.08] rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-electric-blue/[0.12] rounded-full blur-[100px] pointer-events-none" />
 
-          {/* Left */}
-          <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-5">
-            <motion.div variants={fadeUp} className="flex items-center gap-2 flex-wrap">
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#ff7a18] bg-[#ff5e1a]/10 border border-[#ff5e1a]/25 px-3 py-1 rounded-full uppercase tracking-wide">
-                <Zap size={11} fill="currentColor" /> India's #1 Gym Management Software
-              </span>
-            </motion.div>
-            <motion.h1 variants={fadeUp} className="font-heading text-[2.1rem] sm:text-5xl xl:text-[3.4rem] font-bold leading-[1.08] text-white">
-              Gym Management Software
-              <br />Trusted by <span className="text-[#ff5e1a]">500+ Gyms</span>
-              <br />Across India
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-7">
+            <motion.p variants={fadeUp} className="text-sm font-mono uppercase tracking-widest text-neon-green/80">
+              India's #1 Gym Management Software
+            </motion.p>
+            <motion.h1 variants={fadeUp} className="font-heading text-5xl sm:text-6xl lg:text-[4.2rem] font-medium tracking-tight leading-[1.08]">
+              <span className="text-white">Gym Software</span>
+              <br />
+              <span className="gradient-text">Trusted by 500+</span>
+              <br />
+              <span className="text-white">Gyms Across India</span>
             </motion.h1>
-            <motion.p variants={fadeUp} className="text-gray-400 text-base md:text-[1.05rem] leading-relaxed max-w-xl">
-              All-in-one gym management system with WhatsApp automation, biometric access,
+            <motion.p variants={fadeUp} className="text-gray-400 text-lg leading-relaxed max-w-lg">
+              All-in-one gym management system — WhatsApp automation, biometric access,
               GST billing, lead management and analytics. Your gym runs itself.
             </motion.p>
-            <motion.div variants={fadeUp} className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-300 max-w-md">
+            <motion.div variants={fadeUp} className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-400 max-w-md">
               {[
                 "WhatsApp AI bot & bulk messaging",
                 "Biometric + QR + RFID access",
@@ -344,179 +365,173 @@ export default function GymLanding() {
                 "Multi-branch dashboard",
                 "Staff management & payroll",
               ].map((t) => (
-                <span key={t} className="flex items-start gap-1.5"><CheckCircle2 size={14} className="text-[#ff7a18] shrink-0 mt-0.5" /> {t}</span>
+                <span key={t} className="flex items-center gap-2">
+                  <CheckCircle2 size={13} className="text-neon-green shrink-0" /> {t}
+                </span>
               ))}
             </motion.div>
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-3 pt-1">
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
               <button onClick={scrollToForm}
-                className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#ff5e1a] text-white font-bold text-sm hover:bg-[#ff7a18] transition-colors shadow-lg shadow-[#ff5e1a]/25">
-                Start 3-Day Free Trial <ArrowRight size={15} />
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-to-bl from-neon-green via-blue-50 to-blue-300 text-dark-950 font-heading font-medium hover:opacity-90 transition-all duration-300">
+                Start 3-Day Free Trial
+                <ArrowUpRight size={17} className="opacity-60 group-hover:opacity-100 transition-opacity" />
               </button>
               <a href={`https://wa.me/${WHATSAPP_NUM}`} target="_blank" rel="noreferrer"
-                className="flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/15 text-white text-sm font-medium hover:bg-white/5 transition-colors">
-                <MessageCircle size={15} className="text-[#ff7a18]" /> WhatsApp Us
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full backdrop-blur-md bg-white/[0.04] border border-white/[0.08] text-white font-heading font-medium hover:bg-white/[0.08] hover:border-neon-green/20 transition-all duration-300">
+                <MessageCircle size={16} className="text-neon-green" /> WhatsApp Us
               </a>
             </motion.div>
-            <motion.p variants={fadeUp} className="text-gray-600 text-xs">
-              No credit card required &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; Free data migration
+            <motion.p variants={fadeUp} className="text-gray-600 text-xs font-mono">
+              No credit card required · Cancel anytime · Free data migration
             </motion.p>
           </motion.div>
 
-          {/* Right: Hero Demo Form */}
+          {/* Hero form */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-[#12121a] border border-white/[0.10] rounded-2xl p-7 shadow-2xl shadow-[#ff5e1a]/5 lg:ml-6">
-            <div className="mb-5">
-              <h2 className="font-heading text-xl font-bold text-white mb-1">Book Your Free Demo</h2>
-              <p className="text-gray-500 text-sm">See everything live in 15 minutes</p>
-            </div>
-            <DemoForm />
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="rounded-lg card-premium p-8 shadow-2xl shadow-black/50">
+            <p className="text-sm font-mono uppercase tracking-widest text-neon-green/80 mb-1">Book a demo</p>
+            <h2 className="font-heading text-2xl font-medium text-white mb-5">See everything live in 15 mins</h2>
+            <DemoForm compact />
           </motion.div>
         </div>
       </section>
 
-      {/* CLIENT LOGOS */}
-      <Section className="py-8 bg-[#0d0d15] border-y border-white/[0.05]">
-        <div className="max-w-6xl mx-auto px-5">
-          <motion.p variants={fadeUp} className="text-center text-gray-600 text-xs uppercase tracking-widest mb-5 font-medium">
+      {/* ─── CLIENT LOGOS ─── */}
+      <Section className="py-10 bg-dark-900 border-y border-white/[0.05]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.p variants={fadeUp} className="text-center text-xs font-mono uppercase tracking-widest text-gray-600 mb-5">
             Trusted by gyms across India
           </motion.p>
-          <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-x-8 gap-y-3">
+          <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-x-10 gap-y-3">
             {clientLogos.map((logo) => (
-              <span key={logo} className="text-gray-600 text-sm font-semibold hover:text-gray-400 transition-colors">{logo}</span>
+              <span key={logo} className="text-gray-600 text-sm font-heading font-medium hover:text-gray-400 transition-colors duration-200">{logo}</span>
             ))}
           </motion.div>
         </div>
       </Section>
 
-      {/* STATS */}
-      <Section className="py-14 bg-[#101018] border-b border-white/[0.06]">
-        <div className="max-w-5xl mx-auto px-5 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-          {stats.map(({ value, label, sub }, i) => (
-            <motion.div key={label} variants={fadeUp} custom={i} className="flex flex-col items-center gap-1">
-              <p className="font-heading text-4xl font-bold text-[#ff5e1a]">{value}</p>
-              <p className="text-white font-semibold text-sm">{label}</p>
-              <p className="text-gray-600 text-xs">{sub}</p>
+      {/* ─── STATS ─── */}
+      <Section className="py-20 relative">
+        <div className="absolute inset-0 bg-dark-900/40" />
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          {stats.map(({ value, label, color }, i) => (
+            <motion.div key={label} variants={fadeUp} custom={i} className="flex flex-col items-center gap-2">
+              <p className={`font-heading text-4xl sm:text-5xl font-light ${color}`}>{value}</p>
+              <p className="text-gray-500 text-sm font-sans leading-tight">{label}</p>
             </motion.div>
           ))}
         </div>
       </Section>
 
-      {/* FEATURES */}
-      <Section className="py-20 px-5">
-        <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} className="text-center mb-14">
-            <p className="text-[#ff7a18] text-xs font-bold uppercase tracking-widest mb-3">All-In-One Platform</p>
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-              Twelve Essentials. <span className="text-[#ff5e1a]">One Software.</span>
-              <br />Everything Your Gym Needs.
-            </h2>
-            <p className="text-gray-400 mt-4 text-base max-w-2xl mx-auto">
+      {/* ─── FEATURES ─── */}
+      <Section className="py-28 relative">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-electric-blue/[0.03] rounded-full blur-[120px] pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+            <motion.div variants={fadeUp}>
+              <p className="text-sm font-mono uppercase tracking-widest text-neon-green/80 mb-4">All-In-One Platform</p>
+              <h2 className="font-heading text-4xl sm:text-5xl font-light text-white leading-tight">
+                Twelve essentials,
+                <br />
+                <span className="gradient-text-alt">one software</span>
+              </h2>
+            </motion.div>
+            <motion.p variants={fadeUp} custom={1} className="text-gray-400 text-lg leading-relaxed max-w-md">
               From member check-in to billing, WhatsApp reminders to payroll — GymOS handles it all so you don't have to.
-            </p>
-          </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {features.map(({ icon: Icon, title, desc, bullets }, i) => (
-              <motion.div key={title} variants={fadeUp} custom={i % 3}
-                className="group rounded-2xl border border-white/[0.08] bg-[#0d0d15] p-6 hover:border-[#ff5e1a]/40 hover:bg-[#12121a] transition-all">
-                <div className="inline-flex p-2.5 rounded-xl bg-[#ff5e1a]/10 mb-4 group-hover:bg-[#ff5e1a]/15 transition-colors">
-                  <Icon size={21} className="text-[#ff7a18]" />
+            </motion.p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {features.map(({ icon: Icon, tag, title, desc, bullets, accent }, i) => (
+              <motion.div key={title} variants={fadeUp} custom={i % 3}>
+                <div className="group rounded-lg card-premium glass-hover p-7 h-full transition-all duration-500">
+                  <div className="flex items-start justify-between mb-5">
+                    <Icon size={22} className={accent} />
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-gray-600">{tag}</span>
+                  </div>
+                  <h3 className="font-heading text-lg font-medium text-white mb-2">{title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{desc}</p>
+                  <ul className="space-y-2">
+                    {bullets.map((b) => (
+                      <li key={b} className="flex items-center gap-2 text-gray-500 text-xs font-sans">
+                        <span className={`w-1 h-1 rounded-full shrink-0 bg-current ${accent}`} /> {b}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="font-heading font-bold text-white text-base mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-3">{desc}</p>
-                <ul className="space-y-1.5">
-                  {bullets.map((b) => (
-                    <li key={b} className="flex items-center gap-2 text-gray-400 text-xs">
-                      <CheckCircle2 size={12} className="text-[#ff7a18] shrink-0" /> {b}
-                    </li>
-                  ))}
-                </ul>
               </motion.div>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* CTA BANNER */}
-      <section className="py-14 px-5 bg-gradient-to-r from-[#ff5e1a]/15 via-[#ff5e1a]/10 to-transparent border-y border-[#ff5e1a]/20">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-white mb-2">Your Gym Can Run Itself</h2>
-            <p className="text-gray-400 text-base">Book a free 15-minute demo and see WhatsApp, biometrics and billing live.</p>
-          </div>
-          <div className="flex gap-3 shrink-0">
-            <button onClick={scrollToForm}
-              className="flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#ff5e1a] text-white font-bold text-sm hover:bg-[#ff7a18] transition-colors shadow-lg shadow-[#ff5e1a]/20">
-              Activate Free Trial
-            </button>
-            <a href={`https://wa.me/${WHATSAPP_NUM}`} target="_blank" rel="noreferrer"
-              className="flex items-center gap-2 px-5 py-3.5 rounded-full border border-white/15 text-white text-sm font-medium hover:bg-white/5 transition-colors">
-              <MessageCircle size={15} /> WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <Section className="py-20 px-5 bg-[#101018] border-b border-white/[0.06]">
-        <div className="max-w-4xl mx-auto">
-          <motion.div variants={fadeUp} className="text-center mb-14">
-            <p className="text-[#ff7a18] text-xs font-bold uppercase tracking-widest mb-3">Simple Onboarding</p>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white">
-              Get Your Gym on <span className="text-[#ff5e1a]">GymOS in 3 Steps</span>
+      {/* ─── HOW IT WORKS ─── */}
+      <Section className="py-28 bg-dark-900/40 relative">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div variants={fadeUp} className="mb-16">
+            <p className="text-sm font-mono uppercase tracking-widest text-electric-cyan mb-4">Simple onboarding</p>
+            <h2 className="font-heading text-4xl sm:text-5xl font-light text-white">
+              How we <span className="gradient-text-alt">make it happen</span>
             </h2>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {steps.map(({ n, title, desc }, i) => (
-              <motion.div key={n} variants={fadeUp} custom={i}
-                className="relative rounded-2xl border border-white/[0.08] bg-[#0a0a0f]/80 p-7 text-center">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#ff5e1a]/15 text-[#ff7a18] font-heading font-bold text-lg mb-4">{n}</span>
-                <h3 className="font-heading font-bold text-white text-lg mb-2">{title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {steps.map((step, i) => (
+              <motion.div key={step.num} variants={fadeUp} custom={i}>
+                <div className="group rounded-lg card-premium p-8 h-full transition-all duration-500">
+                  <span className="font-mono text-4xl font-light text-neon-green/10 block mb-6">{step.num}</span>
+                  <h3 className="font-heading text-xl font-medium text-white mb-3">{step.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* PRICING */}
-      <Section className="py-20 px-5">
-        <div className="max-w-5xl mx-auto">
-          <motion.div variants={fadeUp} className="text-center mb-14">
-            <p className="text-[#ff7a18] text-xs font-bold uppercase tracking-widest mb-3">Transparent Pricing</p>
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-              Gym Software <span className="text-[#ff5e1a]">Pricing in India</span>
+      {/* ─── PRICING ─── */}
+      <Section className="py-28 relative">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-neon-green/[0.03] rounded-full blur-[100px] pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div variants={fadeUp} className="text-center mb-16 max-w-2xl mx-auto">
+            <p className="text-sm font-mono uppercase tracking-widest text-electric-blue mb-4">Transparent Pricing</p>
+            <h2 className="font-heading text-4xl sm:text-5xl font-light text-white mb-4">
+              Gym software <span className="gradient-text-warm">pricing in India</span>
             </h2>
-            <p className="text-gray-400 mt-3 text-sm">No setup fees · No hidden charges · Free data migration · Cancel anytime</p>
+            <p className="text-gray-500 text-sm font-mono">No setup fees · No hidden charges · Free data migration · Cancel anytime</p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
             {plans.map((plan, i) => (
               <motion.div key={plan.name} variants={fadeUp} custom={i}
-                className={`relative rounded-2xl p-7 flex flex-col gap-5 ${plan.popular ? "border-2 border-[#ff5e1a] bg-[#12121a] shadow-xl shadow-[#ff5e1a]/10" : "border border-white/[0.09] bg-[#0d0d15]"}`}>
+                className={`relative rounded-lg flex flex-col gap-6 p-8 transition-all duration-500 ${plan.popular
+                  ? "border border-neon-green/30 bg-white/[0.04] backdrop-blur-xl shadow-[0_0_60px_rgba(0,255,136,0.06)]"
+                  : "card-premium"}`}>
                 {plan.popular && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#ff5e1a] text-white text-xs font-bold uppercase tracking-wide whitespace-nowrap">
-                    <Zap size={11} fill="currentColor" /> Most Popular
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-neon-green text-dark-950 text-[10px] font-heading font-medium uppercase tracking-widest whitespace-nowrap">
+                    <Zap size={10} fill="currentColor" /> Most Popular
                   </span>
                 )}
                 <div>
-                  <h3 className="font-heading text-lg font-bold text-white mb-1">{plan.name}</h3>
-                  <p className="text-gray-500 text-xs mb-4 min-h-[2.5rem]">{plan.tagline}</p>
-                  <p className="font-heading text-4xl font-bold text-white leading-none">
+                  <h3 className="font-heading text-xl font-medium text-white mb-1">{plan.name}</h3>
+                  <p className="text-gray-600 text-xs font-mono mb-5 min-h-[2rem]">{plan.tagline}</p>
+                  <p className="font-heading text-4xl font-light text-white leading-none">
                     {plan.price}
-                    <span className="text-sm text-gray-500 font-normal ml-1">{plan.period}</span>
+                    <span className="text-sm text-gray-500 font-mono ml-1">{plan.period}</span>
                   </p>
-                  {plan.yearly && <p className="text-[#ff7a18] text-xs mt-1 font-medium">Save 17% · {plan.yearly}</p>}
+                  {plan.yearly && <p className="text-neon-green/70 text-xs font-mono mt-1">Save 17% · {plan.yearly}</p>}
                 </div>
                 <ul className="space-y-2.5 flex-1">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-gray-300 text-sm">
-                      <CheckCircle2 size={15} className="text-[#ff7a18] shrink-0 mt-0.5" /> {f}
+                    <li key={f} className="flex items-start gap-3 text-gray-400 text-sm font-sans">
+                      <CheckCircle2 size={14} className="text-neon-green shrink-0 mt-0.5" /> {f}
                     </li>
                   ))}
                 </ul>
                 <button onClick={scrollToForm}
-                  className={`w-full py-3.5 rounded-xl font-bold text-sm transition-colors ${plan.popular ? "bg-[#ff5e1a] text-white hover:bg-[#ff7a18] shadow-lg shadow-[#ff5e1a]/20" : "border border-white/12 text-white hover:bg-white/5"}`}>
+                  className={`group inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-md font-heading font-medium text-sm transition-all duration-300 ${plan.popular
+                    ? "bg-neon-green text-dark-950 hover:bg-neon-mint"
+                    : "bg-white/[0.04] border border-white/[0.08] text-white hover:bg-white/[0.08] hover:border-neon-green/20"}`}>
                   {plan.price === "Custom" ? "Contact Sales" : "Start Free Demo"}
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </button>
               </motion.div>
             ))}
@@ -524,29 +539,34 @@ export default function GymLanding() {
         </div>
       </Section>
 
-      {/* TESTIMONIALS */}
-      <Section className="py-20 px-5 bg-[#101018] border-y border-white/[0.06]">
-        <div className="max-w-5xl mx-auto">
-          <motion.div variants={fadeUp} className="text-center mb-14">
-            <p className="text-[#ff7a18] text-xs font-bold uppercase tracking-widest mb-3">Real Gyms, Real Results</p>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white">
-              500+ Gyms. <span className="text-[#ff5e1a]">Here's What They Say.</span>
-            </h2>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {/* ─── TESTIMONIALS ─── */}
+      <Section className="py-28 bg-dark-900/40 relative">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+            <motion.div variants={fadeUp}>
+              <p className="text-sm font-mono uppercase tracking-widest text-neon-green/80 mb-4">Real gyms, real results</p>
+              <h2 className="font-heading text-4xl sm:text-5xl font-light text-white leading-tight">
+                500+ gyms.
+                <br />
+                <span className="gradient-text">Here's what they say.</span>
+              </h2>
+            </motion.div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {testimonials.map(({ name, role, city, members, rating, text }, i) => (
-              <motion.div key={name} variants={fadeUp} custom={i}
-                className="rounded-2xl border border-white/[0.08] bg-[#0a0a0f]/80 p-6">
-                <div className="flex gap-1 mb-3">
-                  {Array.from({ length: rating }).map((_, j) => <Star key={j} size={13} className="text-[#ff7a18]" fill="#ff7a18" />)}
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed mb-5">"{text}"</p>
-                <div className="border-t border-white/[0.07] pt-4">
-                  <p className="text-white font-semibold text-sm">{name}</p>
-                  <p className="text-gray-500 text-xs">{role} · {city}</p>
-                  <span className="inline-flex items-center gap-1 mt-1.5 text-[10px] text-[#ff7a18] bg-[#ff5e1a]/10 px-2 py-0.5 rounded-full">
-                    <Users size={9} /> {members}
-                  </span>
+              <motion.div key={name} variants={fadeUp} custom={i}>
+                <div className="group rounded-lg card-premium p-7 h-full transition-all duration-500">
+                  <div className="flex gap-1 mb-4">
+                    {Array.from({ length: rating }).map((_, j) => <Star key={j} size={13} className="text-neon-green" fill="#00ff88" />)}
+                  </div>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6 font-sans">"{text}"</p>
+                  <div className="border-t border-white/[0.06] pt-5">
+                    <p className="font-heading font-medium text-white text-sm">{name}</p>
+                    <p className="text-gray-600 text-xs font-mono mt-0.5">{role} · {city}</p>
+                    <span className="inline-flex items-center gap-1 mt-2 text-[10px] font-mono text-neon-green/60 bg-neon-green/[0.06] border border-neon-green/10 px-2 py-0.5 rounded-full">
+                      <Users size={9} /> {members}
+                    </span>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -554,90 +574,93 @@ export default function GymLanding() {
         </div>
       </Section>
 
-      {/* SECOND FORM */}
-      <section ref={formRef} className="py-20 px-5">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      {/* ─── DEMO FORM SECTION ─── */}
+      <section ref={formRef} className="py-28 bg-dark-950 relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-neon-green/[0.03] rounded-full blur-[120px] pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <p className="text-[#ff7a18] text-xs font-bold uppercase tracking-widest mb-3">Get Started Today</p>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4">
-              Book a Free Demo of <span className="text-[#ff5e1a]">India's Best Gym Software</span>
+            <p className="text-sm font-mono uppercase tracking-widest text-neon-green/80 mb-4">Get started today</p>
+            <h2 className="font-heading text-4xl sm:text-5xl font-light text-white mb-6 leading-tight">
+              Let's transform
+              <br />
+              <span className="gradient-text-warm">your gym</span>
             </h2>
-            <p className="text-gray-400 text-base leading-relaxed mb-6">
+            <p className="text-gray-400 text-lg leading-relaxed mb-8">
               Our team gives you a personalised 15-minute live walkthrough of GymOS — no obligation, no card required.
             </p>
-            <ul className="space-y-3 mb-6">
+            <ul className="space-y-4 mb-8">
               {[
                 "Complete live walkthrough of all features",
                 "We migrate your existing member data free",
                 "Technical consultation for your setup",
                 "Go live within 48 hours",
               ].map((t) => (
-                <li key={t} className="flex items-start gap-3 text-gray-300 text-sm">
-                  <CheckCircle2 size={16} className="text-[#ff7a18] shrink-0 mt-0.5" /> {t}
+                <li key={t} className="flex items-start gap-3 text-gray-400 text-sm font-sans">
+                  <CheckCircle2 size={16} className="text-neon-green shrink-0 mt-0.5" /> {t}
                 </li>
               ))}
             </ul>
-            <div className="flex items-center gap-4 pt-2 border-t border-white/[0.07]">
-              <a href={`tel:${PHONE_NUM.replace(/\s/g, "")}`} className="flex items-center gap-2 text-gray-300 text-sm hover:text-white transition-colors">
-                <Phone size={15} className="text-[#ff7a18]" /> {PHONE_NUM}
+            <div className="flex items-center gap-5 pt-4 border-t border-white/[0.06]">
+              <a href={`tel:${PHONE_NUM}`} className="flex items-center gap-2 text-gray-400 text-sm hover:text-white transition-colors duration-200">
+                <Phone size={14} className="text-neon-green" /> {PHONE_NUM}
               </a>
               <a href={`https://wa.me/${WHATSAPP_NUM}`} target="_blank" rel="noreferrer"
-                className="flex items-center gap-2 text-gray-300 text-sm hover:text-white transition-colors">
-                <MessageCircle size={15} className="text-[#ff7a18]" /> WhatsApp Us
+                className="flex items-center gap-2 text-gray-400 text-sm hover:text-white transition-colors duration-200">
+                <MessageCircle size={14} className="text-electric-cyan" /> WhatsApp Us
               </a>
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
-            className="rounded-2xl border border-white/[0.10] bg-[#12121a]/80 backdrop-blur-sm p-7">
+            className="rounded-lg card-premium p-8 shadow-2xl shadow-black/50">
             <DemoForm />
           </motion.div>
         </div>
       </section>
 
-      {/* CITY SEO */}
-      <Section className="py-16 px-5 bg-[#0d0d15] border-y border-white/[0.06]">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div variants={fadeUp} className="flex items-center justify-center gap-2 mb-5">
-            <MapPin size={16} className="text-[#ff7a18]" />
-            <p className="text-white font-semibold text-base">Gym Management Software Across India</p>
+      {/* ─── CITY SEO ─── */}
+      <Section className="py-16 bg-dark-900/40 border-y border-white/[0.05]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div variants={fadeUp} className="flex items-center justify-center gap-2 mb-6">
+            <MapPin size={15} className="text-electric-cyan" />
+            <p className="text-sm font-mono uppercase tracking-widest text-gray-500">Gym Management Software Across India</p>
           </motion.div>
           <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-2.5">
             {cities.map((city) => (
               <span key={city}
-                className="text-sm text-gray-400 bg-white/[0.04] border border-white/[0.07] px-3.5 py-1.5 rounded-full hover:border-[#ff5e1a]/30 hover:text-gray-200 transition-colors cursor-default">
+                className="text-sm text-gray-500 bg-white/[0.03] border border-white/[0.06] px-4 py-1.5 rounded-full font-sans hover:border-neon-green/20 hover:text-gray-300 transition-all duration-200 cursor-default">
                 {city}
               </span>
             ))}
           </motion.div>
-          <motion.p variants={fadeUp} className="text-gray-600 text-xs mt-5">
+          <motion.p variants={fadeUp} className="text-gray-700 text-xs font-mono mt-6">
             Gym management software in Bangalore · Chennai · Hyderabad · Mumbai · Pune · Delhi · Kolkata · Ahmedabad · Jaipur · Indore and 200+ cities in India
           </motion.p>
         </div>
       </Section>
 
-      {/* FAQ */}
-      <Section className="py-20 px-5">
-        <div className="max-w-3xl mx-auto">
-          <motion.div variants={fadeUp} className="text-center mb-12">
-            <p className="text-[#ff7a18] text-xs font-bold uppercase tracking-widest mb-3">FAQs</p>
-            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white">
-              Frequently Asked <span className="text-[#ff5e1a]">Questions</span>
+      {/* ─── FAQ ─── */}
+      <Section className="py-28 bg-dark-950 relative">
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div variants={fadeUp} className="text-center mb-14">
+            <p className="text-sm font-mono uppercase tracking-widest text-electric-blue mb-4">FAQs</p>
+            <h2 className="font-heading text-4xl sm:text-5xl font-light text-white">
+              Frequently asked <span className="gradient-text-warm">questions</span>
             </h2>
-            <p className="text-gray-500 mt-3 text-sm">Everything you need to know about GymOS gym management software India.</p>
           </motion.div>
           <motion.div variants={fadeUp}><FAQ /></motion.div>
-          <motion.div variants={fadeUp} className="mt-10 rounded-2xl border border-[#ff5e1a]/20 bg-[#ff5e1a]/5 p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <motion.div variants={fadeUp}
+            className="mt-10 rounded-lg card-premium p-6 flex flex-col sm:flex-row items-center justify-between gap-5">
             <div>
-              <p className="text-white font-semibold text-base mb-1">Still have questions?</p>
-              <p className="text-gray-400 text-sm">Talk to our team — we're here to help.</p>
+              <p className="font-heading font-medium text-white mb-1">Still have questions?</p>
+              <p className="text-gray-500 text-sm font-sans">Talk to our team — we're here to help.</p>
             </div>
             <div className="flex gap-3 shrink-0">
               <a href={`https://wa.me/${WHATSAPP_NUM}`} target="_blank" rel="noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#ff5e1a] text-white text-sm font-bold hover:bg-[#ff7a18] transition-colors">
+                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neon-green text-dark-950 font-heading font-medium text-sm hover:bg-neon-mint transition-all duration-300">
                 <MessageCircle size={14} /> WhatsApp Us
               </a>
-              <a href={`tel:${PHONE_NUM.replace(/\s/g, "")}`}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-white text-sm font-medium hover:bg-white/5 transition-colors">
+              <a href={`tel:${PHONE_NUM}`}
+                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-white font-heading font-medium text-sm hover:bg-white/[0.08] hover:border-neon-green/20 transition-all duration-300">
                 <Phone size={14} /> Call Us
               </a>
             </div>
@@ -645,45 +668,47 @@ export default function GymLanding() {
         </div>
       </Section>
 
-      {/* FOOTER */}
-      <footer className="bg-[#080810] border-t border-white/[0.06] py-12 px-5">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {/* ─── FOOTER ─── */}
+      <footer className="bg-dark-900 border-t border-white/[0.05] py-14 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="sm:col-span-2 lg:col-span-1">
-            <p className="font-heading text-base font-bold mb-3 flex items-center gap-2">
-              <Dumbbell size={18} className="text-[#ff5e1a]" />
-              <span className="text-white">{PRODUCT}</span>
+            <p className="font-heading text-base font-medium mb-3 flex items-center gap-2">
+              <Dumbbell size={17} className="text-neon-green" />
+              <span className="text-white">GymOS</span>
             </p>
-            <p className="text-gray-600 text-sm leading-relaxed mb-4">
+            <p className="text-gray-600 text-sm font-sans leading-relaxed mb-4">
               India's best gym management software. Built for gyms, yoga studios, CrossFit boxes and fitness centres across India.
             </p>
-            <p className="text-gray-600 text-xs">by Devloft Technologies, Bangalore</p>
+            <p className="text-gray-700 text-xs font-mono">by Devloft Technologies, Bangalore</p>
           </div>
           <div>
-            <p className="font-semibold text-white mb-3 text-sm">Features</p>
-            <ul className="space-y-2 text-sm text-gray-500">
-              {["Member Management", "Gym Billing & GST", "Biometric Attendance", "WhatsApp Automation", "Lead Management", "Staff & Payroll"].map((s) => <li key={s} className="hover:text-gray-300 transition-colors">{s}</li>)}
-            </ul>
-          </div>
-          <div>
-            <p className="font-semibold text-white mb-3 text-sm">Top Cities</p>
-            <ul className="space-y-2 text-sm text-gray-500">
-              {["Bangalore", "Mumbai", "Hyderabad", "Chennai", "Delhi NCR", "Pune"].map((c) => (
-                <li key={c} className="hover:text-gray-300 transition-colors">Gym Software {c}</li>
+            <p className="font-heading font-medium text-white mb-4 text-sm">Features</p>
+            <ul className="space-y-2 text-sm text-gray-600 font-sans">
+              {["Member Management", "Gym Billing & GST", "Biometric Attendance", "WhatsApp Automation", "Lead Management", "Staff & Payroll"].map((s) => (
+                <li key={s} className="hover:text-gray-400 transition-colors duration-200 cursor-default">{s}</li>
               ))}
             </ul>
           </div>
           <div>
-            <p className="font-semibold text-white mb-3 text-sm">Contact</p>
-            <ul className="space-y-3 text-sm text-gray-500">
-              <li className="flex items-center gap-2"><Phone size={13} className="text-[#ff7a18]" /> {PHONE_NUM}</li>
-              <li><a href={`https://wa.me/${WHATSAPP_NUM}`} className="flex items-center gap-2 hover:text-white transition-colors"><MessageCircle size={13} className="text-[#ff7a18]" /> WhatsApp Us</a></li>
-              <li className="flex items-start gap-2"><MapPin size={13} className="text-[#ff7a18] shrink-0 mt-0.5" /> Bangalore, Karnataka, India</li>
+            <p className="font-heading font-medium text-white mb-4 text-sm">Top Cities</p>
+            <ul className="space-y-2 text-sm text-gray-600 font-sans">
+              {["Bangalore", "Mumbai", "Hyderabad", "Chennai", "Delhi NCR", "Pune"].map((c) => (
+                <li key={c} className="hover:text-gray-400 transition-colors duration-200 cursor-default">Gym Software {c}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="font-heading font-medium text-white mb-4 text-sm">Contact</p>
+            <ul className="space-y-3 text-sm text-gray-600 font-sans">
+              <li><a href={`tel:${PHONE_NUM}`} className="flex items-center gap-2 hover:text-gray-300 transition-colors duration-200"><Phone size={13} className="text-neon-green" /> {PHONE_NUM}</a></li>
+              <li><a href={`https://wa.me/${WHATSAPP_NUM}`} className="flex items-center gap-2 hover:text-gray-300 transition-colors duration-200"><MessageCircle size={13} className="text-electric-cyan" /> WhatsApp Us</a></li>
+              <li className="flex items-start gap-2"><MapPin size={13} className="text-electric-blue shrink-0 mt-0.5" /> Bangalore, Karnataka, India</li>
             </ul>
           </div>
         </div>
-        <div className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-700 text-xs">
+        <div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-white/[0.05] flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-700 text-xs font-mono">
           <p>© 2026 Devloft Technologies · GymOS Gym Management Software India</p>
-          <p>Gym Software · Fitness Centre Software · Yoga Studio Management Software</p>
+          <p>Gym Software · Fitness Centre Software · Yoga Studio Management</p>
         </div>
       </footer>
     </div>
