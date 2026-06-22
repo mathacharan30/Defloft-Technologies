@@ -4,11 +4,11 @@ import { motion, useInView } from "framer-motion";
 import {
   ArrowRight, Phone, MessageCircle, CheckCircle2, AlertCircle,
   Users, CreditCard, Fingerprint, BellRing, CalendarClock, BarChart3,
-  Dumbbell, Zap, Loader2, CheckCheck, ChevronDown, Star,
+  Dumbbell, Zap, ChevronDown, Star,
   Briefcase, MapPin, ArrowUpRight, ScanLine, Wrench,
   Package, Receipt, Settings, PieChart, FileSpreadsheet,
 } from "lucide-react";
-import { addSubmission } from "../data/submissions";
+
 
 const WHATSAPP_NUM = "918147814232";
 const PHONE_NUM = "+91 8147814232";
@@ -214,13 +214,38 @@ const testimonials = [
 ];
 
 const faqs = [
-  { q: "What is GymOS gym management software?", a: "GymOS is a complete gym management ERP built for Indian gyms and fitness studios. It covers member management with QR profiles, billing with auto dues calculation, QR/barcode attendance, class scheduling, staff management with role-based access, equipment tracking, supplements inventory, expense management and a live analytics dashboard — all from one system." },
-  { q: "How much does gym management software cost in India?", a: "GymOS is priced at ₹799/month or ₹8,999/year (saving ₹589 vs monthly). Both plans include all features — unlimited members, all modules, and full access. No setup fees and free data migration included." },
-  { q: "Does GymOS support QR code and barcode attendance?", a: "Yes. GymOS includes a camera-based QR code scanner (html5-qrcode), hardware barcode scanner support, and a standalone kiosk mode for the reception desk. Members can check in and check out with duration tracking, and duplicate scans are blocked with audio feedback." },
-  { q: "Can I manage Zumba, Yoga and other classes separately from gym memberships?", a: "Yes. GymOS has a dedicated class management module supporting Zumba, Yoga, Dance, HIIT, Kids Dance and Gym. Each class type has its own trainer assignment, multiple time slots and an enrolled members list." },
-  { q: "Does GymOS support role-based access for staff?", a: "Yes. You can create individual login credentials for each staff member via Firebase Auth. Admins get full access, staff get check-in only access. Roles include Trainer, Staff, Manager and Receptionist — each with their own QR code." },
-  { q: "Can I track equipment maintenance and supplements in GymOS?", a: "Yes. GymOS includes an equipment management module with service date tracking (Overdue / Due Soon / Good status) and a supplements inventory module with stock quantity, price and stock level alerts (Out of Stock / Low / In Stock)." },
-  { q: "Is there a free trial for GymOS?", a: "We offer a free 15-minute personalised demo where our team walks you through every module live. We also migrate your existing member data for free and go live within 48 hours." },
+  {
+    q: "What modules does GymOS include?",
+    a: "GymOS includes 10 modules: Member Management (QR profiles, attendance calendar, bulk Excel import/export, SMS reminders), Payments & Billing (multi-mode, auto dues calculation), Attendance & Check-in (QR camera scanner, hardware barcode, kiosk mode), Class Management (Zumba/Yoga/HIIT/Dance), Staff Management (role-based Firebase auth), Dashboard & Analytics, Equipment Management, Supplements Inventory, Expense Tracking and Gym Settings.",
+  },
+  {
+    q: "How does the QR code check-in work?",
+    a: "Each member gets a unique QR code on their profile which they can download. At check-in, you can scan it using the built-in camera-based QR scanner (html5-qrcode) or a hardware barcode scanner. GymOS also has a standalone Kiosk mode — a full-screen popup with no navigation — perfect for the reception desk. Check-in and check-out are both tracked with duration, and duplicate scans are blocked with audio feedback.",
+  },
+  {
+    q: "Can I manage different membership plans — Gym, Zumba, Group Classes?",
+    a: "Yes. GymOS supports category-based membership plans for Gym, Zumba and Group Classes separately. Each category can have its own Monthly, Quarterly, 6-month, Annual or Special offer plans with custom pricing and duration. You manage all plans from the Settings module.",
+  },
+  {
+    q: "How does billing and dues tracking work?",
+    a: "GymOS auto-calculates each member's balance dues and expiry date based on their plan and payment history. The Dues & Expired tab shows all members with pending dues at a glance. You can record payments in Cash, Card, UPI, Bank Transfer or Cheque, and the system sends SMS reminders automatically for renewals and dues.",
+  },
+  {
+    q: "How does staff access control work?",
+    a: "You can create individual login credentials for each staff member using Firebase Auth. Four roles are supported — Trainer, Staff, Manager and Receptionist. Admins get full access to all modules; Staff role gets check-in only access. Each staff member also gets their own QR code, and you can track salary and joining date in their profile.",
+  },
+  {
+    q: "Does GymOS track equipment and supplements?",
+    a: "Yes. The Equipment Management module lets you log every piece of equipment with purchase date, price and next service date. Service status is shown as Overdue, Due Soon or Good so you never miss a maintenance. The Supplements Inventory module tracks stock quantity and price with Out of Stock / Low Stock / In Stock alerts.",
+  },
+  {
+    q: "What analytics does the dashboard show?",
+    a: "The GymOS dashboard shows all-time and monthly revenue, active vs expired member counts, daily check-ins, and members expiring in the next 7 days. It also has a 6-month Revenue vs Expenses bar chart, a Member Status pie chart and revenue breakdown by membership plan.",
+  },
+  {
+    q: "How much does GymOS cost?",
+    a: "GymOS is priced at ₹799/month or ₹8,999/year (saves ₹589 vs monthly). Both plans include every module — unlimited members, all check-in modes, class scheduling, staff management, equipment, inventory, analytics and more. No setup fees and free data migration included.",
+  },
 ];
 
 const cities = [
@@ -230,40 +255,30 @@ const cities = [
   "Nagpur", "Vizag", "Bhopal",
 ];
 
-function DemoForm({ compact = false }) {
+function DemoForm() {
   const [form, setForm] = useState({ name: "", gymName: "", phone: "", city: "", members: "" });
-  const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
     if (!form.name || !form.phone) { setError("Please fill in your name and phone number."); return; }
-    setSubmitting(true);
-    try {
-      await addSubmission({ fullName: form.name, company: form.gymName, phone: form.phone, city: form.city, message: `Members: ${form.members}`, source: "gym-erp-landing" });
-      setSuccess(true);
-    } catch {
-      setError("Something went wrong. Please try again.");
-    } finally {
-      setSubmitting(false);
-    }
-  };
 
-  if (success) {
-    return (
-      <div className="flex flex-col items-center justify-center gap-4 py-10 text-center">
-        <div className="w-12 h-12 rounded-full bg-neon-green/10 border border-neon-green/20 flex items-center justify-center">
-          <CheckCheck size={22} className="text-neon-green" />
-        </div>
-        <h3 className="font-heading text-xl font-medium text-white">We'll call you shortly!</h3>
-        <p className="text-gray-500 text-sm">Our team will reach out to schedule your free demo.</p>
-      </div>
-    );
-  }
+    const lines = [
+      `👋 Hi! I'd like a free demo of GymOS.`,
+      ``,
+      `👤 Name: ${form.name}`,
+      form.gymName ? `🏋️ Gym: ${form.gymName}` : null,
+      `📞 Phone: ${form.phone}`,
+      form.city ? `📍 City: ${form.city}` : null,
+      form.members ? `👥 Members: ${form.members}` : null,
+    ].filter(Boolean).join("\n");
+
+    const url = `https://wa.me/918147814232?text=${encodeURIComponent(lines)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   const inputCls = "w-full px-4 py-3 rounded-md bg-white/[0.03] border border-white/[0.08] text-white placeholder-gray-600 text-sm font-sans focus:outline-none focus:border-neon-green/30 focus:bg-white/[0.05] transition-all duration-200";
 
@@ -273,7 +288,7 @@ function DemoForm({ compact = false }) {
         { label: "Your Name *", name: "name", type: "text", placeholder: "Your Name" },
         { label: "Phone Number *", name: "phone", type: "tel", placeholder: "+91 98765 43210" },
         { label: "Gym / Studio Name", name: "gymName", type: "text", placeholder: "Your Gym Name" },
-        ...(!compact ? [{ label: "City", name: "city", type: "text", placeholder: "e.g. Bangalore, Chennai" }] : []),
+        { label: "City", name: "city", type: "text", placeholder: "e.g. Bangalore, Chennai" },
       ].map(({ label, name, type, placeholder }) => (
         <div key={name}>
           <label className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1.5">{label}</label>
@@ -293,11 +308,11 @@ function DemoForm({ compact = false }) {
         </select>
       </div>
       {error && <p className="text-red-400 text-xs flex items-center gap-1.5 font-mono"><AlertCircle size={12} /> {error}</p>}
-      <button type="submit" disabled={submitting}
-        className="group w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-md bg-neon-green text-dark-950 font-heading font-medium text-sm hover:bg-neon-mint transition-all duration-300 disabled:opacity-50">
-        {submitting ? <><Loader2 size={15} className="animate-spin" /> Submitting…</> : <>GET FREE DEMO <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" /></>}
+      <button type="submit"
+        className="group w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-md bg-neon-green text-dark-950 font-heading font-medium text-sm hover:bg-neon-mint transition-all duration-300">
+        <MessageCircle size={15} /> SEND ON WHATSAPP
       </button>
-      <p className="text-center text-gray-600 text-[11px] font-mono">No credit card required · Cancel anytime</p>
+      <p className="text-center text-gray-600 text-[11px] font-mono">Opens WhatsApp with your details pre-filled</p>
     </form>
   );
 }
@@ -425,12 +440,12 @@ export default function GymLanding() {
           </motion.div>
 
           {/* Hero form */}
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+          <motion.div ref={formRef} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="rounded-lg card-premium p-8 shadow-2xl shadow-black/50">
             <p className="text-sm font-mono uppercase tracking-widest text-neon-green/80 mb-1">Book a demo</p>
             <h2 className="font-heading text-2xl font-medium text-white mb-5">See everything live in 15 mins</h2>
-            <DemoForm compact />
+            <DemoForm />
           </motion.div>
         </div>
       </section>
@@ -622,49 +637,6 @@ export default function GymLanding() {
           </div>
         </div>
       </Section>
-
-      {/* ─── DEMO FORM SECTION ─── */}
-      <section ref={formRef} className="py-28 bg-dark-950 relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-neon-green/[0.03] rounded-full blur-[120px] pointer-events-none" />
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <p className="text-sm font-mono uppercase tracking-widest text-neon-green/80 mb-4">Get started today</p>
-            <h2 className="font-heading text-4xl sm:text-5xl font-light text-white mb-6 leading-tight">
-              Let's transform
-              <br />
-              <span className="gradient-text-warm">your gym</span>
-            </h2>
-            <p className="text-gray-400 text-lg leading-relaxed mb-8">
-              Our team gives you a personalised 15-minute live walkthrough of every GymOS module — no obligation, no card required.
-            </p>
-            <ul className="space-y-4 mb-8">
-              {[
-                "Live walkthrough of all 10 modules",
-                "We migrate your existing member data free",
-                "Set up staff logins & membership plans for you",
-                "Go live within 48 hours",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-3 text-gray-400 text-sm font-sans">
-                  <CheckCircle2 size={16} className="text-neon-green shrink-0 mt-0.5" /> {t}
-                </li>
-              ))}
-            </ul>
-            <div className="flex items-center gap-5 pt-4 border-t border-white/[0.06]">
-              <a href={`tel:${PHONE_NUM}`} className="flex items-center gap-2 text-gray-400 text-sm hover:text-white transition-colors duration-200">
-                <Phone size={14} className="text-neon-green" /> {PHONE_NUM}
-              </a>
-              <a href={`https://wa.me/${WHATSAPP_NUM}`} target="_blank" rel="noreferrer"
-                className="flex items-center gap-2 text-gray-400 text-sm hover:text-white transition-colors duration-200">
-                <MessageCircle size={14} className="text-electric-cyan" /> WhatsApp Us
-              </a>
-            </div>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
-            className="rounded-lg card-premium p-8 shadow-2xl shadow-black/50">
-            <DemoForm />
-          </motion.div>
-        </div>
-      </section>
 
       {/* ─── CITY SEO ─── */}
       <Section className="py-16 bg-dark-900/40 border-y border-white/[0.05]">
