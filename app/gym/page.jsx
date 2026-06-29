@@ -1,6 +1,9 @@
 import GymLanding from "@/src/views/GymLanding";
 
 export const metadata = {
+  verification: {
+    google: "J0Kx9VtEnBDeoZG16qGYQjrBWU0XzBOLtyjTQ8Jei6M",
+  },
   title: "Gym Management Software India | Best Gym Software | GymOS by Devloft",
   description:
     "GymOS is India's best gym management software. Manage members, billing, attendance, WhatsApp reminders & analytics — all in one place. Trusted by 120+ gyms. Free demo available.",
