@@ -36,7 +36,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/images/gym-og.png",
+        url: "https://gym.devlofttech.com/opengraph-image",
         width: 1200,
         height: 630,
         alt: "GymOS — Gym Management Software India",
@@ -144,7 +144,7 @@ const jsonLd = {
           name: "How much does gym management software cost in India?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "GymOS pricing starts at ₹1,499/month for the Starter plan (up to 300 members) and ₹2,999/month for the Pro plan (unlimited members, biometric integration, WhatsApp automation). Enterprise pricing is available for multi-branch gym chains.",
+            text: "GymOS pricing starts at ₹799/month (billed monthly) or ₹8,999/year (billed annually — save over 6 months). Both plans include all features: member management, billing, QR attendance, WhatsApp reminders, staff management, analytics, supplements inventory, and equipment tracking. No hidden charges.",
           },
         },
         {
