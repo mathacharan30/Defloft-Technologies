@@ -18,8 +18,8 @@ export const metadata = {
     "gym membership management software",
     "gym attendance software",
     "gym erp software",
-    "fitness centre management software",
-    "yoga studio management software",
+    "gym management software free trial",
+    "gym software for small gym",
     "fitness management software india",
     "software gym management",
     "easy gym software",
@@ -136,7 +136,7 @@ const jsonLd = {
           name: "What is GymOS gym management software?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "GymOS is an all-in-one gym management software built for Indian gyms and fitness studios. It helps gym owners manage members, collect payments, track attendance, send WhatsApp renewal reminders, schedule trainers and classes, and view business analytics — all from one dashboard.",
+            text: "GymOS is an all-in-one gym management software built for Indian gym owners. It helps you manage members, collect payments, track attendance, send SMS renewal reminders, schedule classes and trainers, and view business analytics — all from one dashboard.",
           },
         },
         {
@@ -184,7 +184,7 @@ const jsonLd = {
           name: "Which gyms use GymOS in India?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "GymOS is trusted by 120+ gyms and fitness studios across India, including standalone gyms, yoga studios, CrossFit boxes, and multi-branch fitness chains.",
+            text: "GymOS is trusted by 120+ gyms across India — from small neighbourhood gyms to large multi-equipment facilities.",
           },
         },
       ],
